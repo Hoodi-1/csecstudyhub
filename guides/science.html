@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSEC Science Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bio-primary: #1a5c38;
+    --bio-accent: #4ade80;
+    --bio-light: #d1fae5;
+    --bio-mid: #22c55e;
+    --chem-primary: #1e3a5f;
+    --chem-accent: #60a5fa;
+    --chem-light: #dbeafe;
+    --chem-mid: #3b82f6;
+    --phys-primary: #4a1942;
+    --phys-accent: #e879f9;
+    --phys-light: #fae8ff;
+    --phys-mid: #d946ef;
+    --dark: #0f0f13;
+    --dark2: #1a1a22;
+    --dark3: #242430;
+    --text: #e8e8f0;
+    --text-muted: #9999b0;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    padding: 60px 40px 50px;
+    background: var(--dark2);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 10% 50%, rgba(26,92,56,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 50% 20%, rgba(30,58,95,0.2) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 70% at 90% 70%, rgba(74,25,66,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--bio-accent); display: inline-block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--bio-accent), var(--chem-accent), var(--phys-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 500px;
+    font-weight: 300;
+  }
+  .subject-pills {
+    display: flex;
+    gap: 10px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .pill-bio { background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.25); color: var(--bio-accent); }
+  .pill-chem { background: rgba(96,165,250,0.1); border-color: rgba(96,165,250,0.25); color: var(--chem-accent); }
+  .pill-phys { background: rgba(232,121,249,0.1); border-color: rgba(232,121,249,0.25); color: var(--phys-accent); }
+  .pill:hover { transform: translateY(-2px); filter: brightness(1.2); }
+
+  /* ─── NAV ─── */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,15,19,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 16px 22px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active-bio { color: var(--bio-accent); border-bottom-color: var(--bio-accent); }
+  .nav-tab.active-chem { color: var(--chem-accent); border-bottom-color: var(--chem-accent); }
+  .nav-tab.active-phys { color: var(--phys-accent); border-bottom-color: var(--phys-accent); }
+
+  /* ─── MAIN LAYOUT ─── */
+  .main { max-width: 1100px; margin: 0 auto; padding: 48px 40px; }
+
+  /* ─── SUBJECT PANELS ─── */
+  .subject-panel { display: none; }
+  .subject-panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
+
+  .subject-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .subject-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .bio-icon { background: linear-gradient(135deg, var(--bio-primary), #2d7a4f); box-shadow: 0 8px 32px rgba(74,222,128,0.2); }
+  .chem-icon { background: linear-gradient(135deg, var(--chem-primary), #2563eb); box-shadow: 0 8px 32px rgba(96,165,250,0.2); }
+  .phys-icon { background: linear-gradient(135deg, var(--phys-primary), #7e22ce); box-shadow: 0 8px 32px rgba(232,121,249,0.2); }
+
+  .subject-title { font-family: 'DM Serif Display', serif; font-size: 2rem; margin-bottom: 4px; }
+  .subject-desc { color: var(--text-muted); font-size: 0.9rem; max-width: 600px; }
+
+  /* ─── SECTION CARDS ─── */
+  .sections-grid { display: grid; gap: 20px; }
+
+  .section-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .section-card:hover { border-color: rgba(255,255,255,0.14); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .section-letter {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+  .bio-sec { background: rgba(74,222,128,0.12); color: var(--bio-accent); }
+  .chem-sec { background: rgba(96,165,250,0.12); color: var(--chem-accent); }
+  .phys-sec { background: rgba(232,121,249,0.12); color: var(--phys-accent); }
+
+  .section-title-area { flex: 1; }
+  .section-name { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em; }
+  .section-count { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+  .chevron { color: var(--text-muted); transition: transform 0.25s; font-size: 12px; }
+  .section-card.open .chevron { transform: rotate(180deg); }
+
+  .section-body {
+    display: none;
+    padding: 0 24px 20px;
+    border-top: 1px solid var(--border);
+  }
+  .section-card.open .section-body { display: block; }
+
+  .section-intro {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 14px 0 16px;
+    line-height: 1.7;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  /* ─── OBJECTIVES LIST ─── */
+  .objectives-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .objectives-list { list-style: none; display: grid; gap: 6px; }
+  .objectives-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #c8c8d8;
+    line-height: 1.5;
+  }
+  .obj-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .bio-dot { background: var(--bio-accent); }
+  .chem-dot { background: var(--chem-accent); }
+  .phys-dot { background: var(--phys-accent); }
+
+  /* ─── TOPICS GRID ─── */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .topic-chip {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.15s;
+  }
+  .topic-chip:hover { transform: translateY(-2px); background: rgba(255,255,255,0.04); }
+  .topic-chip .num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 5px;
+  }
+  .bio-num { background: rgba(74,222,128,0.12); color: var(--bio-accent); }
+  .chem-num { background: rgba(96,165,250,0.12); color: var(--chem-accent); }
+  .phys-num { background: rgba(232,121,249,0.12); color: var(--phys-accent); }
+
+  /* ─── KEY CONCEPTS ─── */
+  .key-concepts {
+    margin-top: 16px;
+    padding: 16px;
+    background: rgba(255,255,255,0.025);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .key-concepts-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .concept-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .concept-tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 400;
+  }
+  .bio-tag { background: rgba(74,222,128,0.08); color: var(--bio-mid); border: 1px solid rgba(74,222,128,0.15); }
+  .chem-tag { background: rgba(96,165,250,0.08); color: var(--chem-mid); border: 1px solid rgba(96,165,250,0.15); }
+  .phys-tag { background: rgba(232,121,249,0.08); color: var(--phys-mid); border: 1px solid rgba(232,121,249,0.15); }
+
+  /* ─── EXAM TIPS CARD ─── */
+  .exam-tips-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .exam-tip-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .tip-icon { font-size: 22px; margin-bottom: 10px; }
+  .tip-title { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; }
+  .tip-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .hero { padding: 40px 20px 36px; }
+    .main { padding: 32px 20px; }
+    .nav-bar { padding: 0 16px; }
+    .subject-header { grid-template-columns: 1fr; gap: 14px; }
+    .topics-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span></span>CSEC Examination Preparation</div>
+    <h1>Your Complete<br><em>Science Study Guide</em></h1>
+    <p class="hero-sub">Covering all sections and key objectives for Biology, Chemistry, and Physics — structured to help you study smarter.</p>
+    <div class="subject-pills">
+      <div class="pill pill-bio" onclick="switchTab('bio')">🌿 Biology</div>
+      <div class="pill pill-chem" onclick="switchTab('chem')">⚗️ Chemistry</div>
+      <div class="pill pill-phys" onclick="switchTab('phys')">⚡ Physics</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <div class="nav-tab active-bio" id="tab-bio" onclick="switchTab('bio')">🌿 Biology</div>
+    <div class="nav-tab" id="tab-chem" onclick="switchTab('chem')">⚗️ Chemistry</div>
+    <div class="nav-tab" id="tab-phys" onclick="switchTab('phys')">⚡ Physics</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ══════════ BIOLOGY ══════════ -->
+  <div class="subject-panel active" id="panel-bio">
+    <div class="subject-header">
+      <div class="subject-icon bio-icon">🌿</div>
+      <div>
+        <div class="subject-title">Biology</div>
+        <div class="subject-desc">The study of living organisms, life processes, and the continuity of life — from cellular structure to ecosystems and genetics.</div>
+      </div>
+    </div>
+
+    <div class="sections-grid">
+
+      <!-- SECTION A -->
+      <div class="section-card open" id="bio-a">
+        <div class="section-header" onclick="toggleSection('bio-a')">
+          <div class="section-letter bio-sec">SEC A</div>
+          <div class="section-title-area">
+            <div class="section-name">Living Organisms in the Environment</div>
+            <div class="section-count">7 General Objectives · 7 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">An introduction to the diversity and complexity of living organisms and their relationships with the environment. Students explore habitats, food webs, energy flow, and the impact of human activities on ecosystems.</p>
+          <div class="objectives-label">General Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot bio-dot"></span>Recognise diversity and similarity of form in living organisms</li>
+            <li><span class="obj-dot bio-dot"></span>Understand the importance of the abiotic environment to living organisms</li>
+            <li><span class="obj-dot bio-dot"></span>Appreciate interdependence between organisms and their environment</li>
+            <li><span class="obj-dot bio-dot"></span>Understand energy flow through organisms within the ecosystem</li>
+            <li><span class="obj-dot bio-dot"></span>Appreciate recycling of materials in nature and finite world resources</li>
+            <li><span class="obj-dot bio-dot"></span>Be aware of the effect of human activities on the environment</li>
+            <li><span class="obj-dot bio-dot"></span>Apply knowledge to identify problems affecting growth and survival of populations</li>
+          </ul>
+          <div class="topics-grid" style="margin-top:16px;">
+            <div class="topic-chip"><span class="num bio-num">1</span> Classification of Organisms</div>
+            <div class="topic-chip"><span class="num bio-num">2</span> Abiotic Environment</div>
+            <div class="topic-chip"><span class="num bio-num">3</span> Food Webs & Trophic Levels</div>
+            <div class="topic-chip"><span class="num bio-num">4</span> Energy Flow in Ecosystems</div>
+            <div class="topic-chip"><span class="num bio-num">5</span> Nutrient Cycling</div>
+            <div class="topic-chip"><span class="num bio-num">6</span> Human Impact on Environment</div>
+            <div class="topic-chip"><span class="num bio-num">7</span> Population & Survival Factors</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label bio-dot" style="color:var(--bio-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag bio-tag">5 Kingdoms</span>
+              <span class="concept-tag bio-tag">Biotic/Abiotic factors</span>
+              <span class="concept-tag bio-tag">Food chains</span>
+              <span class="concept-tag bio-tag">Producers & Consumers</span>
+              <span class="concept-tag bio-tag">Decomposers</span>
+              <span class="concept-tag bio-tag">Carbon cycle</span>
+              <span class="concept-tag bio-tag">Nitrogen cycle</span>
+              <span class="concept-tag bio-tag">Deforestation</span>
+              <span class="concept-tag bio-tag">Pollution</span>
+              <span class="concept-tag bio-tag">Conservation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION B -->
+      <div class="section-card" id="bio-b">
+        <div class="section-header" onclick="toggleSection('bio-b')">
+          <div class="section-letter bio-sec">SEC B</div>
+          <div class="section-title-area">
+            <div class="section-name">Life Processes and Disease</div>
+            <div class="section-count">10 General Objectives · 10 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Life processes are largely illustrated in humans and flowering plants. The focus is on the interdependence of internal processes at the organ and cellular level in maintaining a healthy organism, alongside diseases common in the Caribbean.</p>
+          <div class="objectives-label">General Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot bio-dot"></span>Know the structure of unspecialised cells and functions of main cell structures</li>
+            <li><span class="obj-dot bio-dot"></span>Understand nutrition — how organisms obtain energy and material requirements</li>
+            <li><span class="obj-dot bio-dot"></span>Understand respiration as the means by which energy is made available</li>
+            <li><span class="obj-dot bio-dot"></span>Understand the role of transport, storage and defence in living organisms</li>
+            <li><span class="obj-dot bio-dot"></span>Understand processes by which organisms excrete and regulate body fluids</li>
+            <li><span class="obj-dot bio-dot"></span>Understand mechanisms of movement and its roles in living organisms</li>
+            <li><span class="obj-dot bio-dot"></span>Understand detection and response to changes in internal/external environment</li>
+            <li><span class="obj-dot bio-dot"></span>Understand how organisms increase in mass, size, and complexity</li>
+            <li><span class="obj-dot bio-dot"></span>Understand processes by which life is perpetuated (reproduction)</li>
+            <li><span class="obj-dot bio-dot"></span>Appreciate the social and economic importance of disease control</li>
+          </ul>
+          <div class="topics-grid" style="margin-top:16px;">
+            <div class="topic-chip"><span class="num bio-num">1</span> Cells</div>
+            <div class="topic-chip"><span class="num bio-num">2</span> Nutrition</div>
+            <div class="topic-chip"><span class="num bio-num">3</span> Respiration</div>
+            <div class="topic-chip"><span class="num bio-num">4</span> Transport</div>
+            <div class="topic-chip"><span class="num bio-num">5</span> Excretion</div>
+            <div class="topic-chip"><span class="num bio-num">6</span> Movement</div>
+            <div class="topic-chip"><span class="num bio-num">7</span> Irritability (Coordination)</div>
+            <div class="topic-chip"><span class="num bio-num">8</span> Growth</div>
+            <div class="topic-chip"><span class="num bio-num">9</span> Reproduction</div>
+            <div class="topic-chip"><span class="num bio-num">10</span> Disease</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--bio-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag bio-tag">Cell organelles</span>
+              <span class="concept-tag bio-tag">Photosynthesis</span>
+              <span class="concept-tag bio-tag">Aerobic vs anaerobic respiration</span>
+              <span class="concept-tag bio-tag">Blood composition</span>
+              <span class="concept-tag bio-tag">Heart & circulation</span>
+              <span class="concept-tag bio-tag">Kidneys & osmoregulation</span>
+              <span class="concept-tag bio-tag">Nervous system</span>
+              <span class="concept-tag bio-tag">Hormones</span>
+              <span class="concept-tag bio-tag">Mitosis</span>
+              <span class="concept-tag bio-tag">Sexually transmitted diseases</span>
+              <span class="concept-tag bio-tag">HIV/AIDS</span>
+              <span class="concept-tag bio-tag">Immune response</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION C -->
+      <div class="section-card" id="bio-c">
+        <div class="section-header" onclick="toggleSection('bio-c')">
+          <div class="section-letter bio-sec">SEC C</div>
+          <div class="section-title-area">
+            <div class="section-name">Continuity and Variation</div>
+            <div class="section-count">7 General Objectives · 7 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Highlights the implications of variation in living organisms. Covers sexual and asexual reproduction, meiosis, Mendelian genetics, natural selection, and the role of variation in evolution.</p>
+          <div class="objectives-label">General Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot bio-dot"></span>Understand sexual and asexual methods of reproduction</li>
+            <li><span class="obj-dot bio-dot"></span>Understand the processes involved in sexual reproduction in plants and animals</li>
+            <li><span class="obj-dot bio-dot"></span>Appreciate the significance of the chromosome as a carrier of inheritance</li>
+            <li><span class="obj-dot bio-dot"></span>Understand simple Mendelian genetics</li>
+            <li><span class="obj-dot bio-dot"></span>Recognise that there is variation in the characteristics of organisms</li>
+            <li><span class="obj-dot bio-dot"></span>Appreciate the significance of natural selection in evolution</li>
+            <li><span class="obj-dot bio-dot"></span>Be aware of modern applications of genetic technologies</li>
+          </ul>
+          <div class="topics-grid" style="margin-top:16px;">
+            <div class="topic-chip"><span class="num bio-num">1</span> Asexual Reproduction</div>
+            <div class="topic-chip"><span class="num bio-num">2</span> Sexual Reproduction in Plants</div>
+            <div class="topic-chip"><span class="num bio-num">3</span> Sexual Reproduction in Animals</div>
+            <div class="topic-chip"><span class="num bio-num">4</span> Meiosis</div>
+            <div class="topic-chip"><span class="num bio-num">5</span> Mendelian Genetics</div>
+            <div class="topic-chip"><span class="num bio-num">6</span> Variation & Natural Selection</div>
+            <div class="topic-chip"><span class="num bio-num">7</span> Genetics — Applications</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--bio-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag bio-tag">Chromosomes & DNA</span>
+              <span class="concept-tag bio-tag">Alleles & genes</span>
+              <span class="concept-tag bio-tag">Dominant vs recessive</span>
+              <span class="concept-tag bio-tag">Genotype vs phenotype</span>
+              <span class="concept-tag bio-tag">Punnett squares</span>
+              <span class="concept-tag bio-tag">Pollination</span>
+              <span class="concept-tag bio-tag">Fertilisation</span>
+              <span class="concept-tag bio-tag">Natural selection</span>
+              <span class="concept-tag bio-tag">Genetic engineering</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="exam-tips-row">
+      <div class="exam-tip-card">
+        <div class="tip-icon">🔬</div>
+        <div class="tip-title">SBA Lab Skills</div>
+        <div class="tip-text">Master Manipulation & Measurement (MM), Observation, Recording & Reporting (ORR), Analysis & Interpretation (AI), and Planning & Design (PD) skills. These are assessed throughout your School-Based Assessment.</div>
+      </div>
+      <div class="exam-tip-card">
+        <div class="tip-icon">🧬</div>
+        <div class="tip-title">Drawing Diagrams</div>
+        <div class="tip-text">Practise drawing and labelling biological diagrams — cells, organ systems, flowers, chromosomes. Use a sharp pencil, label with straight lines, and always include a title and magnification.</div>
+      </div>
+      <div class="exam-tip-card">
+        <div class="tip-icon">🌏</div>
+        <div class="tip-title">Caribbean Context</div>
+        <div class="tip-text">The syllabus emphasises Caribbean ecosystems, diseases (HIV/AIDS, Dengue), and environmental issues. Know local examples for habitats, food webs, and human impacts on the environment.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ CHEMISTRY ══════════ -->
+  <div class="subject-panel" id="panel-chem">
+    <div class="subject-header">
+      <div class="subject-icon chem-icon">⚗️</div>
+      <div>
+        <div class="subject-title">Chemistry</div>
+        <div class="subject-desc">The study of matter — its properties, composition, reactions, and energy changes. From atomic structure to organic compounds and metal chemistry.</div>
+      </div>
+    </div>
+
+    <div class="sections-grid">
+
+      <!-- SECTION A -->
+      <div class="section-card open" id="chem-a">
+        <div class="section-header" onclick="toggleSection('chem-a')">
+          <div class="section-letter chem-sec">SEC A</div>
+          <div class="section-title-area">
+            <div class="section-name">Principles of Chemistry</div>
+            <div class="section-count">12 General Objectives · 9 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Introduces fundamental chemical concepts: the particulate nature of matter, atomic structure, bonding, properties of elements and compounds, and quantitative chemistry. Forms the core conceptual foundation for all other sections.</p>
+          <div class="objectives-label">General Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot chem-dot"></span>Be aware that matter is made up of particles</li>
+            <li><span class="obj-dot chem-dot"></span>Understand that different mixtures can be separated based on component properties</li>
+            <li><span class="obj-dot chem-dot"></span>Be familiar with the atom as the basic building block of matter</li>
+            <li><span class="obj-dot chem-dot"></span>Appreciate that matter can be classified based on physical or chemical properties</li>
+            <li><span class="obj-dot chem-dot"></span>Be aware of different forces of attraction that exist between particles</li>
+            <li><span class="obj-dot chem-dot"></span>Understand the mole as the unit for comparing amounts of matter</li>
+            <li><span class="obj-dot chem-dot"></span>Appreciate that properties of chemicals affect their reactions</li>
+            <li><span class="obj-dot chem-dot"></span>Assess the impact of certain materials on living systems and the environment</li>
+            <li><span class="obj-dot chem-dot"></span>Understand the composition of certain materials and make informed choices about their use</li>
+            <li><span class="obj-dot chem-dot"></span>Understand that rate of chemical reaction depends on physical factors</li>
+            <li><span class="obj-dot chem-dot"></span>Appreciate that energy changes occur during chemical reactions</li>
+            <li><span class="obj-dot chem-dot"></span>Appreciate the importance of chemistry to the environment</li>
+          </ul>
+          <div class="topics-grid" style="margin-top:16px;">
+            <div class="topic-chip"><span class="num chem-num">1</span> States of Matter</div>
+            <div class="topic-chip"><span class="num chem-num">2</span> Mixtures & Separations</div>
+            <div class="topic-chip"><span class="num chem-num">3</span> Atomic Structure</div>
+            <div class="topic-chip"><span class="num chem-num">4</span> Periodic Table & Periodicity</div>
+            <div class="topic-chip"><span class="num chem-num">5</span> Structure and Bonding</div>
+            <div class="topic-chip"><span class="num chem-num">6</span> Mole Concept</div>
+            <div class="topic-chip"><span class="num chem-num">7</span> Electrochemistry</div>
+            <div class="topic-chip"><span class="num chem-num">8</span> Rates of Reaction</div>
+            <div class="topic-chip"><span class="num chem-num">9</span> Energetics</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--chem-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag chem-tag">Protons, neutrons, electrons</span>
+              <span class="concept-tag chem-tag">Ionic & covalent bonds</span>
+              <span class="concept-tag chem-tag">Relative atomic mass</span>
+              <span class="concept-tag chem-tag">Mole calculations</span>
+              <span class="concept-tag chem-tag">pH & indicators</span>
+              <span class="concept-tag chem-tag">Electrolysis</span>
+              <span class="concept-tag chem-tag">Filtration, distillation</span>
+              <span class="concept-tag chem-tag">Exothermic/endothermic</span>
+              <span class="concept-tag chem-tag">Concentration & temperature effects</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION B -->
+      <div class="section-card" id="chem-b">
+        <div class="section-header" onclick="toggleSection('chem-b')">
+          <div class="section-letter chem-sec">SEC B</div>
+          <div class="section-title-area">
+            <div class="section-name">Organic Chemistry</div>
+            <div class="section-count">5 General Objectives · 2 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">The study of the sources and nature of carbon compounds, including hydrocarbons from petroleum, functional groups, homologous series, and polymers. Relates properties to uses in everyday life.</p>
+          <div class="objectives-label">General Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot chem-dot"></span>Understand some processes involved in the formation of carbon compounds from natural sources</li>
+            <li><span class="obj-dot chem-dot"></span>Relate bonding properties of carbon to simple organic compounds</li>
+            <li><span class="obj-dot chem-dot"></span>Understand the patterns of reactions of various homologous series</li>
+            <li><span class="obj-dot chem-dot"></span>Understand the general pattern involved in the nature and formation of polymers</li>
+            <li><span class="obj-dot chem-dot"></span>Relate properties of carbon compounds to their uses</li>
+          </ul>
+          <div class="topics-grid" style="margin-top:16px;">
+            <div class="topic-chip"><span class="num chem-num">1</span> Sources of Hydrocarbon Compounds</div>
+            <div class="topic-chip"><span class="num chem-num">2</span> Reactions of Carbon Compounds</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--chem-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag chem-tag">Alkanes & alkenes</span>
+              <span class="concept-tag chem-tag">Fractional distillation of petroleum</span>
+              <span class="concept-tag chem-tag">Cracking</span>
+              <span class="concept-tag chem-tag">Combustion reactions</span>
+              <span class="concept-tag chem-tag">Addition & substitution</span>
+              <span class="concept-tag chem-tag">Alcohols & esters</span>
+              <span class="concept-tag chem-tag">Polymers & plastics</span>
+              <span class="concept-tag chem-tag">Homologous series</span>
+              <span class="concept-tag chem-tag">Functional groups</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION C -->
+      <div class="section-card" id="chem-c">
+        <div class="section-header" onclick="toggleSection('chem-c')">
+          <div class="section-letter chem-sec">SEC C</div>
+          <div class="section-title-area">
+            <div class="section-name">Inorganic Chemistry</div>
+            <div class="section-count">5 Topic Areas — Metals &amp; Qualitative Analysis</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Focuses on the chemistry of metals — their characteristics, reactivity, methods of extraction, industrial uses, and environmental impact — alongside systematic qualitative analysis of common ions.</p>
+          <div class="objectives-label">Topics Covered</div>
+          <div class="topics-grid" style="margin-top:10px;">
+            <div class="topic-chip"><span class="num chem-num">1</span> Characteristics of Metals</div>
+            <div class="topic-chip"><span class="num chem-num">2</span> Reactivity & Extraction of Metals</div>
+            <div class="topic-chip"><span class="num chem-num">3</span> Uses of Metals</div>
+            <div class="topic-chip"><span class="num chem-num">4</span> Impact on Living Systems & Environment</div>
+            <div class="topic-chip"><span class="num chem-num">5</span> Qualitative Analysis</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--chem-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag chem-tag">Reactivity series</span>
+              <span class="concept-tag chem-tag">Displacement reactions</span>
+              <span class="concept-tag chem-tag">Electrolytic extraction</span>
+              <span class="concept-tag chem-tag">Rusting & corrosion prevention</span>
+              <span class="concept-tag chem-tag">Alloys</span>
+              <span class="concept-tag chem-tag">Flame tests</span>
+              <span class="concept-tag chem-tag">Ion identification</span>
+              <span class="concept-tag chem-tag">Heavy metal pollution</span>
+              <span class="concept-tag chem-tag">Acid rain</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="exam-tips-row">
+      <div class="exam-tip-card">
+        <div class="tip-icon">🧮</div>
+        <div class="tip-title">Mole Calculations</div>
+        <div class="tip-text">Master the mole formula: n = m/M and n = V/22.4 (at STP). Practise reacting mass calculations, titrations, and percentage composition — these appear frequently in Paper 2.</div>
+      </div>
+      <div class="exam-tip-card">
+        <div class="tip-icon">🔥</div>
+        <div class="tip-title">Equation Balancing</div>
+        <div class="tip-text">Always balance chemical equations. Use state symbols (s), (l), (g), (aq). Ionic equations and half-equations for electrolysis are commonly tested — practise these thoroughly.</div>
+      </div>
+      <div class="exam-tip-card">
+        <div class="tip-icon">🧪</div>
+        <div class="tip-title">Lab Practicals</div>
+        <div class="tip-text">Know the tests for cations, anions, and gases (H₂, O₂, CO₂, NH₃, Cl₂). The SBA emphasises experimental design, recording observations, and drawing valid conclusions from data.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ PHYSICS ══════════ -->
+  <div class="subject-panel" id="panel-phys">
+    <div class="subject-header">
+      <div class="subject-icon phys-icon">⚡</div>
+      <div>
+        <div class="subject-title">Physics</div>
+        <div class="subject-desc">The study of matter, energy, and the fundamental forces of nature — from mechanics and thermodynamics to waves, electricity, and atomic physics.</div>
+      </div>
+    </div>
+
+    <div class="sections-grid">
+
+      <!-- SECTION A -->
+      <div class="section-card open" id="phys-a">
+        <div class="section-header" onclick="toggleSection('phys-a')">
+          <div class="section-letter phys-sec">SEC A</div>
+          <div class="section-title-area">
+            <div class="section-name">Mechanics</div>
+            <div class="section-count">6 General Objectives · 5 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Introduces scientific methodology, physical measurements, significant figures, and SI units — which underpin the entire syllabus. Covers motion, forces, energy, momentum, and hydrostatics.</p>
+          <div class="objectives-label">General Objectives</div>
+          <ul class="objectives-list">
+            <li><span class="obj-dot phys-dot"></span>Understand the importance of measurement and graphical representation of data</li>
+            <li><span class="obj-dot phys-dot"></span>Appreciate the difference between scalar and vector quantities</li>
+            <li><span class="obj-dot phys-dot"></span>Be familiar with the various effects of forces</li>
+            <li><span class="obj-dot phys-dot"></span>Appreciate the universal applicability of laws of dynamics and conservation of momentum</li>
+            <li><span class="obj-dot phys-dot"></span>Understand the significance of the concept of energy</li>
+            <li><span class="obj-dot phys-dot"></span>Be aware of the application of hydrostatics in everyday life</li>
+          </ul>
+          <div class="topics-grid" style="margin-top:16px;">
+            <div class="topic-chip"><span class="num phys-num">1</span> Galileo & Scientific Method</div>
+            <div class="topic-chip"><span class="num phys-num">2</span> Measurement</div>
+            <div class="topic-chip"><span class="num phys-num">3</span> Vectors</div>
+            <div class="topic-chip"><span class="num phys-num">4</span> Forces & Dynamics</div>
+            <div class="topic-chip"><span class="num phys-num">5</span> Energy</div>
+            <div class="topic-chip"><span class="num phys-num">6</span> Hydrostatics</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--phys-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag phys-tag">SI units & significant figures</span>
+              <span class="concept-tag phys-tag">Speed, velocity, acceleration</span>
+              <span class="concept-tag phys-tag">Newton's Laws</span>
+              <span class="concept-tag phys-tag">Momentum & impulse</span>
+              <span class="concept-tag phys-tag">Kinetic & potential energy</span>
+              <span class="concept-tag phys-tag">Work & power</span>
+              <span class="concept-tag phys-tag">Pressure in fluids</span>
+              <span class="concept-tag phys-tag">Archimedes' Principle</span>
+              <span class="concept-tag phys-tag">Distance-time graphs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION B -->
+      <div class="section-card" id="phys-b">
+        <div class="section-header" onclick="toggleSection('phys-b')">
+          <div class="section-letter phys-sec">SEC B</div>
+          <div class="section-title-area">
+            <div class="section-name">Thermal Physics and Kinetic Theory</div>
+            <div class="section-count">4 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Explores the nature of heat, thermal properties of matter, temperature measurement, and heat transfer mechanisms — using kinetic theory to explain macroscopic phenomena.</p>
+          <div class="topics-grid" style="margin-top:10px;">
+            <div class="topic-chip"><span class="num phys-num">1</span> Nature of Heat</div>
+            <div class="topic-chip"><span class="num phys-num">2</span> Macroscopic Properties & Phenomena</div>
+            <div class="topic-chip"><span class="num phys-num">3</span> Thermal Measurements</div>
+            <div class="topic-chip"><span class="num phys-num">4</span> Transfer of Thermal Energy</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--phys-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag phys-tag">Kinetic theory of matter</span>
+              <span class="concept-tag phys-tag">Specific heat capacity</span>
+              <span class="concept-tag phys-tag">Latent heat</span>
+              <span class="concept-tag phys-tag">Boyle's & Charles' Laws</span>
+              <span class="concept-tag phys-tag">Thermometers</span>
+              <span class="concept-tag phys-tag">Conduction, convection, radiation</span>
+              <span class="concept-tag phys-tag">Expansion of solids/liquids</span>
+              <span class="concept-tag phys-tag">Evaporation vs boiling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION C -->
+      <div class="section-card" id="phys-c">
+        <div class="section-header" onclick="toggleSection('phys-c')">
+          <div class="section-letter phys-sec">SEC C</div>
+          <div class="section-title-area">
+            <div class="section-name">Waves and Optics</div>
+            <div class="section-count">4 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Covers the properties and behaviour of wave motion — including sound, electromagnetic waves, and light. Includes reflection, refraction, and the properties of lenses.</p>
+          <div class="topics-grid" style="margin-top:10px;">
+            <div class="topic-chip"><span class="num phys-num">1</span> Wave Motion</div>
+            <div class="topic-chip"><span class="num phys-num">2</span> Sound</div>
+            <div class="topic-chip"><span class="num phys-num">3</span> Electromagnetic Waves</div>
+            <div class="topic-chip"><span class="num phys-num">4</span> Light Waves & Lenses</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--phys-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag phys-tag">Transverse vs longitudinal waves</span>
+              <span class="concept-tag phys-tag">Frequency, wavelength, amplitude</span>
+              <span class="concept-tag phys-tag">Wave equation v = fλ</span>
+              <span class="concept-tag phys-tag">Reflection & refraction</span>
+              <span class="concept-tag phys-tag">Total internal reflection</span>
+              <span class="concept-tag phys-tag">Electromagnetic spectrum</span>
+              <span class="concept-tag phys-tag">Converging & diverging lenses</span>
+              <span class="concept-tag phys-tag">Ray diagrams</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION D -->
+      <div class="section-card" id="phys-d">
+        <div class="section-header" onclick="toggleSection('phys-d')">
+          <div class="section-letter phys-sec">SEC D</div>
+          <div class="section-title-area">
+            <div class="section-name">Electricity and Magnetism</div>
+            <div class="section-count">6 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">The largest section of the CSEC Physics syllabus. Covers electrostatics, current electricity, circuit analysis, electronics, magnetism, and electromagnetic induction — with strong emphasis on practical circuit work.</p>
+          <div class="topics-grid" style="margin-top:10px;">
+            <div class="topic-chip"><span class="num phys-num">1</span> Electrostatics</div>
+            <div class="topic-chip"><span class="num phys-num">2</span> Current Electricity</div>
+            <div class="topic-chip"><span class="num phys-num">3</span> Electrical Quantities</div>
+            <div class="topic-chip"><span class="num phys-num">4</span> Circuit Components</div>
+            <div class="topic-chip"><span class="num phys-num">5</span> Electronics</div>
+            <div class="topic-chip"><span class="num phys-num">6</span> Magnetism & Electromagnetism</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--phys-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag phys-tag">Ohm's Law (V = IR)</span>
+              <span class="concept-tag phys-tag">Series vs parallel circuits</span>
+              <span class="concept-tag phys-tag">Resistance calculations</span>
+              <span class="concept-tag phys-tag">Power P = IV = I²R</span>
+              <span class="concept-tag phys-tag">Logic gates</span>
+              <span class="concept-tag phys-tag">Diodes & transistors</span>
+              <span class="concept-tag phys-tag">Electromagnetic induction</span>
+              <span class="concept-tag phys-tag">Transformers</span>
+              <span class="concept-tag phys-tag">AC vs DC</span>
+              <span class="concept-tag phys-tag">Fleming's rules</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION E -->
+      <div class="section-card" id="phys-e">
+        <div class="section-header" onclick="toggleSection('phys-e')">
+          <div class="section-letter phys-sec">SEC E</div>
+          <div class="section-title-area">
+            <div class="section-name">The Physics of the Atom</div>
+            <div class="section-count">3 Topic Areas</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Introduces atomic models, nuclear structure, and radioactivity — including types of radiation, nuclear equations, half-life, and the applications and hazards of radioactive materials.</p>
+          <div class="topics-grid" style="margin-top:10px;">
+            <div class="topic-chip"><span class="num phys-num">1</span> Models of the Atom</div>
+            <div class="topic-chip"><span class="num phys-num">2</span> Structure of the Atom</div>
+            <div class="topic-chip"><span class="num phys-num">3</span> Radioactivity</div>
+          </div>
+          <div class="key-concepts">
+            <div class="key-concepts-label" style="color:var(--phys-accent)">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag phys-tag">Rutherford's model</span>
+              <span class="concept-tag phys-tag">Protons, neutrons, electrons</span>
+              <span class="concept-tag phys-tag">Isotopes</span>
+              <span class="concept-tag phys-tag">Alpha, beta, gamma radiation</span>
+              <span class="concept-tag phys-tag">Half-life calculations</span>
+              <span class="concept-tag phys-tag">Nuclear fission & fusion</span>
+              <span class="concept-tag phys-tag">Radiation detectors</span>
+              <span class="concept-tag phys-tag">Uses & hazards of radioactivity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="exam-tips-row">
+      <div class="exam-tip-card">
+        <div class="tip-icon">📐</div>
+        <div class="tip-title">Show Your Working</div>
+        <div class="tip-text">In calculation questions, always write the formula first, substitute values with units, then solve. Even if your final answer is wrong, you can earn marks for the correct method.</div>
+      </div>
+      <div class="exam-tip-card">
+        <div class="tip-icon">📊</div>
+        <div class="tip-title">Graph Drawing</div>
+        <div class="tip-text">Use a ruler, label both axes with quantities and units, choose an appropriate scale, and draw the best-fit line (not dot-to-dot). Gradient calculations are a key skill for Paper 2.</div>
+      </div>
+      <div class="exam-tip-card">
+        <div class="tip-icon">🔌</div>
+        <div class="tip-title">Electricity Focus</div>
+        <div class="tip-text">Section D is the most heavily weighted section. Practise circuit diagrams, Ohm's Law problems, and power calculations. Transformer and logic gate questions are also commonly tested.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function switchTab(subject) {
+    // Hide all panels
+    document.querySelectorAll('.subject-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => {
+      t.classList.remove('active-bio','active-chem','active-phys');
+    });
+
+    // Show selected
+    document.getElementById('panel-' + subject).classList.add('active');
+    document.getElementById('tab-' + subject).classList.add('active-' + subject);
+  }
+
+  function toggleSection(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
