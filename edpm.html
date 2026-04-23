@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSEC EDPM Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2333;
+    --border: #30363d;
+    --accent: #f0a500;
+    --accent2: #e05c2a;
+    --accent3: #3fb950;
+    --accent4: #58a6ff;
+    --accent5: #bc8cff;
+    --text: #e6edf3;
+    --text-muted: #7d8590;
+    --text-dim: #484f58;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a1f2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(240,165,0,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 240px; height: 240px;
+    background: radial-gradient(circle, rgba(224,92,42,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(240,165,0,0.1);
+    border: 1px solid rgba(240,165,0,0.3);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 30px;
+    max-width: 560px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  /* NAV */
+  .toc {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .toc-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .toc-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-right: 5px;
+  }
+  .toc a {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 14px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .toc a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(240,165,0,0.08);
+  }
+
+  /* MAIN */
+  .main { max-width: 900px; margin: 0 auto; padding: 50px 40px; }
+
+  /* EXAM OVERVIEW */
+  .exam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+  }
+  .exam-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .exam-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+  .exam-card.p1::before { background: var(--accent); }
+  .exam-card.p2::before { background: var(--accent2); }
+  .exam-card.p3::before { background: var(--accent3); }
+  .exam-card-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .exam-card-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .exam-card-detail {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .exam-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    float: right;
+    margin-top: -4px;
+  }
+  .p1 .exam-pct { color: var(--accent); }
+  .p2 .exam-pct { color: var(--accent2); }
+  .p3 .exam-pct { color: var(--accent3); }
+
+  /* PROFILE DIMENSIONS */
+  .profiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 20px 0 30px;
+  }
+  .profile-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .profile-icon {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .profile-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .profile-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* SECTION CARDS */
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 28px;
+    transition: border-color 0.2s;
+  }
+  .section-card:hover { border-color: rgba(240,165,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--accent);
+    opacity: 0.25;
+    line-height: 1;
+    min-width: 50px;
+    flex-shrink: 0;
+    margin-top: -4px;
+  }
+  .section-title-wrap {}
+  .section-roman {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* OBJECTIVES */
+  .objectives-list {
+    list-style: none;
+    margin: 0 0 20px;
+  }
+  .objectives-list li {
+    display: flex;
+    gap: 14px;
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+    font-size: 14px;
+    align-items: flex-start;
+  }
+  .objectives-list li:last-child { border-bottom: none; }
+  .obj-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    min-width: 24px;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .obj-text { flex: 1; color: var(--text); }
+  .obj-content {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 5px;
+    line-height: 1.55;
+    background: var(--surface2);
+    border-left: 2px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* KEY CONCEPTS TAGS */
+  .tags-section { margin-top: 20px; }
+  .tags-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    border: 1px solid transparent;
+  }
+  .tag-blue { background: rgba(88,166,255,0.1); color: var(--accent4); border-color: rgba(88,166,255,0.2); }
+  .tag-orange { background: rgba(240,165,0,0.1); color: var(--accent); border-color: rgba(240,165,0,0.2); }
+  .tag-red { background: rgba(224,92,42,0.1); color: var(--accent2); border-color: rgba(224,92,42,0.2); }
+  .tag-green { background: rgba(63,185,80,0.1); color: var(--accent3); border-color: rgba(63,185,80,0.2); }
+  .tag-purple { background: rgba(188,140,255,0.1); color: var(--accent5); border-color: rgba(188,140,255,0.2); }
+
+  /* CALLOUT BOXES */
+  .callout {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    display: flex;
+    gap: 14px;
+    font-size: 14px;
+  }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout-body {}
+  .callout-title { font-weight: 600; margin-bottom: 4px; font-size: 13px; }
+  .callout-text { color: var(--text-muted); line-height: 1.6; }
+  .callout.tip { background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.2); }
+  .callout.tip .callout-title { color: var(--accent3); }
+  .callout.warn { background: rgba(240,165,0,0.08); border: 1px solid rgba(240,165,0,0.2); }
+  .callout.warn .callout-title { color: var(--accent); }
+  .callout.info { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.2); }
+  .callout.info .callout-title { color: var(--accent4); }
+
+  /* TWO-COL GRID */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+  .mini-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .mini-card-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    color: var(--text-muted);
+  }
+  .mini-list {
+    list-style: none;
+    font-size: 13px;
+  }
+  .mini-list li {
+    padding: 4px 0;
+    color: var(--text-muted);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .mini-list li::before {
+    content: '›';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* SPEED TABLE */
+  .speed-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .speed-table th {
+    background: var(--surface2);
+    color: var(--text-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .speed-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(48,54,61,0.4);
+    color: var(--text-muted);
+  }
+  .speed-table tr:last-child td { border-bottom: none; }
+  .speed-table .mark { color: var(--accent); font-weight: 600; font-family: 'DM Mono', monospace; }
+
+  /* HEADINGS */
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+  .section-intro {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+    max-width: 620px;
+  }
+  .section-divider {
+    margin: 50px 0 30px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* GLOSSARY */
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .gloss-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .gloss-term {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--accent4);
+    margin-bottom: 5px;
+    font-family: 'DM Mono', monospace;
+  }
+  .gloss-def {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; margin: 12px 0; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(48,54,61,0.3);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '☐';
+    color: var(--text-dim);
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 0px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    padding: 30px 40px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-top: 60px;
+  }
+
+  /* SCROLL BEHAVIOUR */
+  html { scroll-behavior: smooth; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .hero { padding: 40px 20px 36px; }
+    .toc { padding: 16px 20px; }
+    .main { padding: 30px 20px; }
+    .hero-stats { gap: 20px; }
+    .section-card { padding: 22px 18px; }
+    footer { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">CXC 34/G/SYLL 12 &nbsp;·&nbsp; CSEC Study Guide</div>
+    <h1>Electronic Document<br><span>Preparation & Management</span></h1>
+    <p class="hero-sub">Your complete reference guide covering all nine sections of the CSEC EDPM syllabus.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">9</span><span class="stat-label">Sections</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Profile Dimensions</span></div>
+      <div class="stat"><span class="stat-num">60%</span><span class="stat-label">External Exam</span></div>
+      <div class="stat"><span class="stat-num">40%</span><span class="stat-label">SBA</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="toc">
+  <div class="toc-inner">
+    <span class="toc-label">Jump to</span>
+    <a href="#overview">Overview</a>
+    <a href="#s1">I. Computing</a>
+    <a href="#s2">II. Keyboard</a>
+    <a href="#s3">III. Software Intro</a>
+    <a href="#s4">IV. App Software</a>
+    <a href="#s5">V. Business Docs</a>
+    <a href="#s6">VI. Specialised Docs</a>
+    <a href="#s7">VII. E-Communication</a>
+    <a href="#s8">VIII. Doc Mgmt</a>
+    <a href="#s9">IX. Ethics</a>
+    <a href="#sba">SBA</a>
+    <a href="#glossary">Glossary</a>
+  </div>
+</nav>
+
+<main class="main">
+
+  <!-- EXAM OVERVIEW -->
+  <div id="overview">
+    <h2>Examination Overview</h2>
+    <p class="section-intro">The EDPM examination is offered at General Proficiency only. Your final grade is split between an External Assessment (60%) and School-Based Assessment (40%).</p>
+
+    <div class="exam-grid">
+      <div class="exam-card p1">
+        <div class="exam-card-title">Paper 01 &nbsp;· 1h 30min</div>
+        <div class="exam-card-name">Multiple Choice <span class="exam-pct">24%</span></div>
+        <div class="exam-card-detail">60 items from all syllabus sections.<br>Tests Accuracy &amp; Speed (12 marks) and Knowledge &amp; Comprehension (48 marks).</div>
+      </div>
+      <div class="exam-card p2">
+        <div class="exam-card-title">Paper 02 &nbsp;· 2 hours</div>
+        <div class="exam-card-name">Practical Exam <span class="exam-pct">36%</span></div>
+        <div class="exam-card-detail">4 questions / 100 marks. Includes a 10-min speed test (Q1). Tests copy-typing, letters, manuscripts, tables, reports, forms &amp; creative displays.</div>
+      </div>
+      <div class="exam-card p3">
+        <div class="exam-card-title">Paper 03/1 &nbsp;· SBA</div>
+        <div class="exam-card-name">School-Based Assessment <span class="exam-pct">40%</span></div>
+        <div class="exam-card-detail">3 assignments (75 marks) + Portfolio (25 marks). Tests all three profile dimensions across Terms III–V.</div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:36px;">Profile Dimensions</h2>
+    <p class="section-intro">Every piece of work is assessed against three profiles. Know what each one demands.</p>
+    <div class="profiles">
+      <div class="profile-card">
+        <div class="profile-icon">⚡</div>
+        <div class="profile-title">Accuracy & Speed</div>
+        <div class="profile-desc">Professionally completed documents using correct language (spelling, punctuation, grammar, abbreviations) within a specified time period.</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-icon">🧠</div>
+        <div class="profile-title">Knowledge & Comprehension</div>
+        <div class="profile-desc">Ability to list procedures, identify facts, state principles, and critically analyse situations related to EDPM.</div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-icon">🖥️</div>
+        <div class="profile-title">Presentation & Use of Technology</div>
+        <div class="profile-desc">Produce a finished product to professional standards (formatting, style consistency) and demonstrate competency with technology (e-filing, retrieval).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION I -->
+  <div class="section-divider" id="s1"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">I</div>
+      <div class="section-title-wrap">
+        <div class="section-roman">Section I</div>
+        <div class="section-title">Fundamentals of Computing</div>
+      </div>
+    </div>
+
+    <ul class="objectives-list">
+      <li>
+        <span class="obj-num">1</span>
+        <div class="obj-text">Define the computer
+          <div class="obj-content">An electronic machine/device that accepts and processes data to produce information.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">2</span>
+        <div class="obj-text">Identify types of computers
+          <div class="obj-content">Mainframe, Minicomputer, Microcomputers — including laptop, desktop, tablet, palmtop and other current devices.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">3</span>
+        <div class="obj-text">Advantages and disadvantages of computer usage
+          <div class="obj-content">Consider: speed, accuracy, storage, and reliability.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">4</span>
+        <div class="obj-text">Input devices
+          <div class="obj-content">Keyboard, touchscreen, mouse, light pen, microphone, document scanner, OCR/OMR readers, barcode readers.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">5</span>
+        <div class="obj-text">Output devices
+          <div class="obj-content">Printers (impact: dot matrix, line; non-impact: laser, inkjet, page); monitors, speakers, multimedia projector.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">6</span>
+        <div class="obj-text">Storage media
+          <div class="obj-content">CD-ROM, DVD, Floppy Disk, Hard Disk, CD-RW, Flash drives, Memory cards.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">7</span>
+        <div class="obj-text">Operating System vs Application Software
+          <div class="obj-content"><strong>OS:</strong> Coordinates computer device activities, allows apps to run.<br><strong>Application:</strong> Performs specific user tasks — word processing, spreadsheet, database, presentation, anti-virus.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">8</span>
+        <div class="obj-text">Caring for computers and peripherals
+          <div class="obj-content">Proper cleaning, handling, storage, and maintenance of hardware devices in the work environment.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">9</span>
+        <div class="obj-text">Health and safety in computer use
+          <div class="obj-content"><strong>Health/Ergonomics:</strong> Effects of extended use, inadequate lighting, inappropriate furniture, bad posture.<br><strong>Safety:</strong> Overloading sockets, workstation positioning, extension cord placement.</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="tags-section">
+      <div class="tags-label">Key Terms</div>
+      <div class="tags">
+        <span class="tag tag-blue">Hardware</span>
+        <span class="tag tag-blue">Software</span>
+        <span class="tag tag-blue">Input Devices</span>
+        <span class="tag tag-blue">Output Devices</span>
+        <span class="tag tag-orange">Storage Media</span>
+        <span class="tag tag-orange">OS vs Application</span>
+        <span class="tag tag-green">Ergonomics</span>
+        <span class="tag tag-green">Health & Safety</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION II -->
+  <div id="s2"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">II</div>
+      <div class="section-title-wrap">
+        <div class="section-roman">Section II</div>
+        <div class="section-title">Keyboard Mastery</div>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-body">
+        <div class="callout-title">Target Speed</div>
+        <div class="callout-text">You must achieve a minimum typing speed of <strong>35 words per minute (wpm)</strong> incorporating all keyboarding skills.</div>
+      </div>
+    </div>
+
+    <ul class="objectives-list">
+      <li><span class="obj-num">1</span><div class="obj-text">Touch keyboarding techniques<div class="obj-content">Practice and develop speed and accuracy on alphanumeric keys using correct touch technique.</div></div></li>
+      <li><span class="obj-num">2</span><div class="obj-text">Correct posture at the computer<div class="obj-content">Correct posture, arm reach, seat height, screen-to-eye-level contact.</div></div></li>
+      <li><span class="obj-num">3</span><div class="obj-text">Special keys, shortcut keys, and function keys<div class="obj-content">Special: Tab, Escape, Insert. Shortcuts: Ctrl, Alt combinations. Function keys: F1–F12.</div></div></li>
+      <li><span class="obj-num">4</span><div class="obj-text">Spacing after punctuation marks<div class="obj-content">Rules for spacing after: full stop, comma, semicolon, colon, question mark, exclamation mark, apostrophe, parenthesis, quotation marks.</div></div></li>
+      <li><span class="obj-num">5</span><div class="obj-text">Manuscript signs (proofreading marks)<div class="obj-content">Interpret and apply standard correction/proofreading marks as listed in the syllabus appendix.</div></div></li>
+      <li><span class="obj-num">6</span><div class="obj-text">Types of headings<div class="obj-content">Main head, sub-head, shoulder, paragraph, marginal, and others — with appropriate use of each.</div></div></li>
+      <li><span class="obj-num">7</span><div class="obj-text">Typescript from manuscript or typed notes<div class="obj-content">Rules for paragraphing (blocked, indented, hanging), inset paragraphs, abbreviations, typing of figures and ellipsis.</div></div></li>
+      <li><span class="obj-num">8</span><div class="obj-text">Language skills for professional documents<div class="obj-content">Correct punctuation, grammar, spelling, and knowledge of abbreviations.</div></div></li>
+      <li><span class="obj-num">9</span><div class="obj-text">Type at a minimum of 35 wpm<div class="obj-content">Incorporating all skills from objectives 1–8.</div></div></li>
+    </ul>
+
+    <div class="tags-section">
+      <div class="tags-label">Key Terms</div>
+      <div class="tags">
+        <span class="tag tag-orange">Touch Typing</span>
+        <span class="tag tag-orange">35 WPM</span>
+        <span class="tag tag-blue">Manuscript Signs</span>
+        <span class="tag tag-blue">Proofreading</span>
+        <span class="tag tag-green">Posture</span>
+        <span class="tag tag-purple">Paragraph Styles</span>
+        <span class="tag tag-purple">Punctuation Rules</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION III -->
+  <div id="s3"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">III</div>
+      <div class="section-title-wrap">
+        <div class="section-roman">Section III</div>
+        <div class="section-title">Introduction to Application Software</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="mini-card">
+        <div class="mini-card-title">4 Core Software Types</div>
+        <ul class="mini-list">
+          <li>Word Processing — text documents</li>
+          <li>Spreadsheet — numeric data</li>
+          <li>Database Management — data storage &amp; retrieval</li>
+          <li>Presentation — lectures, speeches, reports</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-title">When to Use Each</div>
+        <ul class="mini-list">
+          <li>Word processing: letters, reports, manuscripts</li>
+          <li>Spreadsheet: calculations, charts, invoices</li>
+          <li>Database: storing tables, queries</li>
+          <li>Presentation: visual slide-based delivery</li>
+        </ul>
+      </div>
+    </div>
+
+    <ul class="objectives-list">
+      <li><span class="obj-num">1–5</span><div class="obj-text">Identify and explain each application type<div class="obj-content">Know the purpose, key features, and appropriate use cases for Word Processing, Spreadsheet, Database, and Presentation software.</div></div></li>
+      <li><span class="obj-num">6</span><div class="obj-text">Select appropriate software for specific tasks<div class="obj-content">Given a scenario, determine whether to use word processing, spreadsheet, database management, presentation, or other specialised software.</div></div></li>
+    </ul>
+
+    <div class="tags-section">
+      <div class="tags-label">Key Terms</div>
+      <div class="tags">
+        <span class="tag tag-blue">Word Processor</span>
+        <span class="tag tag-blue">Spreadsheet</span>
+        <span class="tag tag-blue">Database</span>
+        <span class="tag tag-blue">Presentation Software</span>
+        <span class="tag tag-orange">Software Selection</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION IV -->
+  <div id="s4"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">IV</div>
+      <div class="section-title-wrap">
+        <div class="section-roman">Section IV</div>
+        <div class="section-title">Use of Application Software</div>
+      </div>
+    </div>
+
+    <ul class="objectives-list">
+      <li>
+        <span class="obj-num">1</span>
+        <div class="obj-text">Formatting features
+          <div class="obj-content">Font types, styles, sizes, colour, bold/underline/italics. Line spacing, alignment, bullets &amp; numbering, margins, symbols, borders &amp; shading, background, watermarks, endnotes, footnotes, headers, footers, page numbering.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">2</span>
+        <div class="obj-text">Editing techniques
+          <div class="obj-content">Proofreading; cut, copy, paste, move; search &amp; find/replace; add &amp; delete; spelling &amp; grammar check; thesaurus; type-over vs insert mode.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">3</span>
+        <div class="obj-text">Tabulations
+          <div class="obj-content"><strong>Simple:</strong> column &amp; row headings, oblique/vertical headings, borders, table alignment, sorting.<br><strong>Advanced:</strong> Formulae (Sum, Average, Min, Max), charts/graphs, % and $ formatting, invoices, debit notes, credit notes.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">4</span>
+        <div class="obj-text">Create a database using a single table
+          <div class="obj-content">Create and populate a database with no more than 5 fields; perform a simple query using one or two fields.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">5</span>
+        <div class="obj-text">Simple presentations
+          <div class="obj-content">Title slides, transitions, timing, appropriate fonts, animations, layouts, graphics, and effective communication.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">6</span>
+        <div class="obj-text">Integrate information across applications
+          <div class="obj-content">Mail merge (using an external data source), embedding objects from different applications.</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="callout tip">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <div class="callout-title">Exam Tip — Tabulations</div>
+        <div class="callout-text">Know the difference between simple and advanced tabulations. Advanced tabulations often appear in Paper 02 with formula instructions. Practice Sum, Average, Min, and Max functions.</div>
+      </div>
+    </div>
+
+    <div class="tags-section">
+      <div class="tags-label">Key Terms</div>
+      <div class="tags">
+        <span class="tag tag-orange">Formatting</span>
+        <span class="tag tag-orange">Editing</span>
+        <span class="tag tag-blue">Tabulations</span>
+        <span class="tag tag-blue">Database Query</span>
+        <span class="tag tag-green">Mail Merge</span>
+        <span class="tag tag-purple">Presentations</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION V -->
+  <div id="s5"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">V</div>
+      <div class="section-title-wrap">
+        <div class="section-roman">Section V</div>
+        <div class="section-title">Business Document Preparation</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="mini-card">
+        <div class="mini-card-title">Paper Sizes</div>
+        <ul class="mini-list">
+          <li>A3 — 29.7 × 42 cm</li>
+          <li>A4 — 21 × 29.7 cm</li>
+          <li>A5 — 14.8 × 21 cm</li>
+          <li>B5 — 17.6 × 25 cm</li>
+          <li>DL — 11 × 22 cm (envelope)</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-title">Letter Styles</div>
+        <ul class="mini-list">
+          <li>Blocked (full-block)</li>
+          <li>Indented</li>
+          <li>Semi-blocked</li>
+          <li>Short letter, two-page, circular</li>
+          <li>With table / inset / enumeration</li>
+        </ul>
+      </div>
+    </div>
+
+    <ul class="objectives-list">
+      <li><span class="obj-num">1</span><div class="obj-text">Paper sizes and orientation<div class="obj-content">Letter, Legal, and customised sizes. Portrait vs Landscape orientation.</div></div></li>
+      <li><span class="obj-num">2</span><div class="obj-text">Types of stationery<div class="obj-content">Full international range: A3, A4, A5, A6, B5, C5, DL.</div></div></li>
+      <li><span class="obj-num">3</span><div class="obj-text">Select appropriate stationery<div class="obj-content">Letterhead, memo, copy paper, forms, labels, index cards, document covers, templates.</div></div></li>
+      <li><span class="obj-num">4</span><div class="obj-text">Produce letters in appropriate styles<div class="obj-content">Blocked, indented, semi-blocked. Short, two-page, circular, with table, with inset, with enumeration; prepare letterhead.</div></div></li>
+      <li><span class="obj-num">5</span><div class="obj-text">Prepare envelopes and labels<div class="obj-content">Using mail merge or other methods.</div></div></li>
+      <li><span class="obj-num">6</span><div class="obj-text">Correspondence from skeleton notes and various media<div class="obj-content">Composition of notes, letters, and memoranda at the computer, including from audio messages.</div></div></li>
+      <li><span class="obj-num">7</span><div class="obj-text">Memoranda in various styles<div class="obj-content">Short, long, indented, and blocked memos.</div></div></li>
+      <li><span class="obj-num">8</span><div class="obj-text">Documents for meetings<div class="obj-content">Notice of meeting, agenda, minutes, and Chairman's agenda.</div></div></li>
+      <li><span class="obj-num">9</span><div class="obj-text">Manipulate simple graphics for documents<div class="obj-content">Graphs, charts, and pictures inserted into documents.</div></div></li>
+    </ul>
+
+    <div class="tags-section">
+      <div class="tags-label">Key Terms</div>
+      <div class="tags">
+        <span class="tag tag-orange">Letter Styles</span>
+        <span class="tag tag-orange">Memoranda</span>
+        <span class="tag tag-blue">Meeting Documents</span>
+        <span class="tag tag-blue">Stationery</span>
+        <span class="tag tag-green">Mail Merge</span>
+        <span class="tag tag-purple">Paper Sizes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION VI -->
+  <div id="s6"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">VI</div>
+      <div class="section-title-wrap">
+        <div class="section-roman">Section VI</div>
+        <div class="section-title">Specialised Document Preparation</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="mini-card">
+        <div class="mini-card-title">Simple Displays</div>
+        <ul class="mini-list">
+          <li>Centering &amp; columnar work</li>
+          <li>Ruled and unruled work</li>
+          <li>Notices, menus, invitations, cards</li>
+          <li>One and two-page programmes</li>
+          <li>Flyers</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-title">Advanced Displays</div>
+        <ul class="mini-list">
+          <li>Flow charts, organisation charts</li>
+          <li>Graphs (linked and embedded)</li>
+          <li>Newsletters</li>
+          <li>4/6/8 page leaflets</li>
+        </ul>
+      </div>
+    </div>
+
+    <ul class="objectives-list">
+      <li>
+        <span class="obj-num">1</span>
+        <div class="obj-text">Effective and creative displays
+          <div class="obj-content">Simple: centred work, columnar, notices, menus, invitations, flyers. Advanced: flowcharts, org charts, embedded graphs, newsletters.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">2</span>
+        <div class="obj-text">Different document types with appropriate formatting
+          <div class="obj-content">
+            <strong>Newsletters/Leaflets:</strong> 4/6/8-page, reports, proposals, press releases.<br>
+            <strong>Legal:</strong> Wills, leases, conveyances, agreements, contracts.<br>
+            <strong>Technical:</strong> Specifications, Bills of Quantity, scope of works.<br>
+            <strong>Literary:</strong> Radio/theatre/TV plays, actors' scripts, index cards.<br>
+            <strong>Financial:</strong> Trial Balance, Balance Sheet, P&amp;L, Income &amp; Expenditure, Invoice, Bank Statement, Receipts.
+          </div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">3</span>
+        <div class="obj-text">Create a template for future use
+          <div class="obj-content">Creating templates with or without the use of wizards and help options.</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="callout info">
+      <div class="callout-icon">📋</div>
+      <div class="callout-body">
+        <div class="callout-title">SBA Portfolio Requirement</div>
+        <div class="callout-text">You must create samples of <strong>at least SIX types</strong> of specialised documents (e.g., legal documents and financial statements) as part of your portfolio.</div>
+      </div>
+    </div>
+
+    <div class="tags-section">
+      <div class="tags-label">Key Terms</div>
+      <div class="tags">
+        <span class="tag tag-blue">Newsletters</span>
+        <span class="tag tag-blue">Legal Documents</span>
+        <span class="tag tag-blue">Financial Statements</span>
+        <span class="tag tag-orange">Templates</span>
+        <span class="tag tag-green">Creative Displays</span>
+        <span class="tag tag-purple">Technical Docs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION VII -->
+  <div id="s7"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">VII</div>
+      <div class="section-title-wrap">
+        <div class="section-roman">Section VII</div>
+        <div class="section-title">Electronic Communication</div>
+      </div>
+    </div>
+
+    <ul class="objectives-list">
+      <li>
+        <span class="obj-num">1</span>
+        <div class="obj-text">Types of electronic communication
+          <div class="obj-content">Telecommuting, Email, Internet/World Wide Web, social media (blogs, podcasts, forums), social networking (Facebook, Twitter), facsimile, multifunctional devices, scan-to-mail, scan-to-file.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">2</span>
+        <div class="obj-text">Features of e-mail
+          <div class="obj-content">To, CC (carbon copy), BCC (blind carbon copy). Sending attachments.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">3</span>
+        <div class="obj-text">Advantages and disadvantages of electronic communication
+          <div class="obj-content">Speed of delivery, cost, ability to send to multiple recipients simultaneously.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">4</span>
+        <div class="obj-text">New and emerging communication technologies
+          <div class="obj-content">Compare usage and features: Twitter, Facebook, smartphones, blogging.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">5</span>
+        <div class="obj-text">File organisation using e-mail
+          <div class="obj-content">Storing and sorting mail by date, sender, and subject. Contact list organisation.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">6</span>
+        <div class="obj-text">Factors for selecting communication media
+          <div class="obj-content">Degree of urgency, genre (oral, written, visual), level of confidentiality, location/time zone, cost, efficiency, effectiveness.</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="tags-section">
+      <div class="tags-label">Key Terms</div>
+      <div class="tags">
+        <span class="tag tag-blue">Email</span>
+        <span class="tag tag-blue">CC / BCC</span>
+        <span class="tag tag-orange">Social Media</span>
+        <span class="tag tag-orange">Telecommuting</span>
+        <span class="tag tag-green">Facsimile</span>
+        <span class="tag tag-green">Attachments</span>
+        <span class="tag tag-purple">Communication Media Selection</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION VIII -->
+  <div id="s8"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">VIII</div>
+      <div class="section-title-wrap">
+        <div class="section-roman">Section VIII</div>
+        <div class="section-title">Document Management</div>
+      </div>
+    </div>
+
+    <ul class="objectives-list">
+      <li>
+        <span class="obj-num">1</span>
+        <div class="obj-text">Manual vs Electronic filing systems
+          <div class="obj-content">Definitions, comparisons, advantages and disadvantages of each system.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">2</span>
+        <div class="obj-text">Types of documents in data processing
+          <div class="obj-content">Source documents, turnaround documents, and machine-readable documents.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">3</span>
+        <div class="obj-text">Manipulate an electronic filing system
+          <div class="obj-content">Organisation of drives, folders, and files in a hierarchical (tree) structure.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">4</span>
+        <div class="obj-text">Integrity of files
+          <div class="obj-content">Overwrite protection, restricted access, virus protection, encryption, read-only access.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">5</span>
+        <div class="obj-text">Security of files
+          <div class="obj-content">Passwords, firewalls, disaster recovery (fireproof/waterproof storage, backup systems).</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">6</span>
+        <div class="obj-text">Retention of files
+          <div class="obj-content">Archiving, retention periods, disposal methods, and legal limits for retaining files.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">7</span>
+        <div class="obj-text">Tracing document versions
+          <div class="obj-content"><strong>Versioning:</strong> Successive document versions that change over time.<br><strong>Metadata:</strong> Date created, date modified, date accessed, owner, access privileges.</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="tags-section">
+      <div class="tags-label">Key Terms</div>
+      <div class="tags">
+        <span class="tag tag-blue">Filing Systems</span>
+        <span class="tag tag-blue">Hierarchical Structure</span>
+        <span class="tag tag-orange">File Integrity</span>
+        <span class="tag tag-orange">Encryption</span>
+        <span class="tag tag-red">Backup Systems</span>
+        <span class="tag tag-red">Firewall</span>
+        <span class="tag tag-green">Versioning</span>
+        <span class="tag tag-green">Metadata</span>
+        <span class="tag tag-purple">Archiving</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION IX -->
+  <div id="s9"></div>
+  <div class="section-card">
+    <div class="section-header">
+      <div class="section-num">IX</div>
+      <div class="section-title-wrap">
+        <div class="section-roman">Section IX</div>
+        <div class="section-title">Ethics</div>
+      </div>
+    </div>
+
+    <ul class="objectives-list">
+      <li>
+        <span class="obj-num">1</span>
+        <div class="obj-text">Intellectual property
+          <div class="obj-content">Protection of rights of persons who produce, gather or disseminate ideas and information — authors, singers, journalists, etc.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">2</span>
+        <div class="obj-text">Rights protected by intellectual property laws
+          <div class="obj-content"><strong>Economic rights:</strong> Payment for use of the product by third parties.<br><strong>Moral rights:</strong> Protection against misrepresentation or misquoting of the work.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">3</span>
+        <div class="obj-text">The copyright concept
+          <div class="obj-content"><strong>Producers/Owners:</strong> Maintain ownership and receive financial reward.<br><strong>Publishers/Distributors:</strong> Record, film, or print material; distribute it protecting producers' interests.<br><strong>Consumers/Users:</strong> Must acknowledge source or seek permission; may pay a fee.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">4</span>
+        <div class="obj-text">Plagiarism
+          <div class="obj-content">Using someone's intellectual property without giving appropriate credit.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">5</span>
+        <div class="obj-text">Guidelines to avoid plagiarism
+          <div class="obj-content">Acknowledgement of references in text and bibliography (using referencing formats). Obtaining approval for others' work.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">6</span>
+        <div class="obj-text">Planning and ordering priorities
+          <div class="obj-content">Organisation of work and workstation; submission deadlines; effective time management; follow-up procedures.</div>
+        </div>
+      </li>
+      <li>
+        <span class="obj-num">7</span>
+        <div class="obj-text">Desirable habits and work attitudes
+          <div class="obj-content">Individual responsibility, willingness, meeting deadlines, team spirit, co-operation, recognition of diversity, courtesy, punctuality &amp; regularity, good grooming, personal integrity, respect for others.</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="tags-section">
+      <div class="tags-label">Key Terms</div>
+      <div class="tags">
+        <span class="tag tag-orange">Intellectual Property</span>
+        <span class="tag tag-orange">Copyright</span>
+        <span class="tag tag-red">Plagiarism</span>
+        <span class="tag tag-blue">Economic Rights</span>
+        <span class="tag tag-blue">Moral Rights</span>
+        <span class="tag tag-green">Work Ethics</span>
+        <span class="tag tag-green">Time Management</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SBA -->
+  <div class="section-divider" id="sba"></div>
+  <h2>School-Based Assessment (SBA)</h2>
+  <p class="section-intro">SBA accounts for 40% of your final grade. It is made up of three assignments (75 marks) and a portfolio (25 marks).</p>
+
+  <div class="exam-grid">
+    <div class="exam-card p1">
+      <div class="exam-card-title">Assignment 1 — Term III</div>
+      <div class="exam-card-name">Copy-typing from manuscript <span class="exam-pct" style="font-size:1.4rem;">25</span></div>
+      <div class="exam-card-detail">Correct text from author's original work with amendments. Apply printers' correction signs. Covers Sections I–IV.</div>
+    </div>
+    <div class="exam-card p2">
+      <div class="exam-card-title">Assignment 2 — Term IV</div>
+      <div class="exam-card-name">Electronic Research <span class="exam-pct" style="font-size:1.4rem;">25</span></div>
+      <div class="exam-card-detail">Conduct research, present findings electronically, prepare for dissemination via e-mail with bibliography. Covers Sections IV–VI and IX.</div>
+    </div>
+    <div class="exam-card p3">
+      <div class="exam-card-title">Assignment 3 — Term V</div>
+      <div class="exam-card-name">Project-Based Creative Work <span class="exam-pct" style="font-size:1.4rem;">25</span></div>
+      <div class="exam-card-detail">Design documents (flyers, menus, invitations, newsletters) using various applications. Covers Sections III, IV, VI and IX.</div>
+    </div>
+  </div>
+
+  <div class="section-card" style="margin-top:20px;">
+    <div style="font-weight:600; margin-bottom:16px;">Speed Marking Scheme (Assignment 1)</div>
+    <table class="speed-table">
+      <thead>
+        <tr><th>Performance</th><th>Marks</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Completed full assignment within designated time</td><td class="mark">5</td></tr>
+        <tr><td>Completed full assignment but needed less than 2 extra minutes</td><td class="mark">4</td></tr>
+        <tr><td>Completed less than full but more than half, within time</td><td class="mark">3</td></tr>
+        <tr><td>Completed less than half but more than quarter, within time</td><td class="mark">2</td></tr>
+        <tr><td>Completed less than one-quarter of assignment within time</td><td class="mark">1</td></tr>
+      </tbody>
+    </table>
+
+    <div style="font-weight:600; margin: 22px 0 12px;">Accuracy Marking (5 marks)</div>
+    <ul class="checklist">
+      <li>Correct spelling throughout (2+ errors = 0)</li>
+      <li>Appropriate punctuation and line-ending hyphenation</li>
+      <li>Copy free of transposition errors, mis-strokes, omitted/added words</li>
+      <li>Correct capitalisation</li>
+      <li>Information communicated logically with correct grammar, abbreviations, figures, paragraphing, referencing</li>
+    </ul>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="section-divider" id="glossary"></div>
+  <h2>Key Glossary Terms</h2>
+  <p class="section-intro">Essential terms from the EDPM syllabus you must know for Paper 01.</p>
+
+  <div class="glossary-grid">
+    <div class="gloss-item">
+      <div class="gloss-term">Computer</div>
+      <div class="gloss-def">An electronic machine that accepts and processes data to produce information.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Hardware</div>
+      <div class="gloss-def">The physical components of a computer system (e.g., keyboard, monitor, CPU).</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Software</div>
+      <div class="gloss-def">Programs and operating information used by a computer — includes OS and application software.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">OCR / OMR</div>
+      <div class="gloss-def">Optical Character Recognition / Optical Mark Recognition — character reader input devices.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Mail Merge</div>
+      <div class="gloss-def">Combining a document template with a data source to produce personalised copies.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Metadata</div>
+      <div class="gloss-def">Data stored about a document: date created/modified/accessed, owner, access privileges.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Versioning</div>
+      <div class="gloss-def">Tracking successive document versions that change over time.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Encryption</div>
+      <div class="gloss-def">Converting data into a coded form to prevent unauthorised access.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Ergonomics</div>
+      <div class="gloss-def">The study of designing equipment and environments for human comfort, efficiency, and safety.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Plagiarism</div>
+      <div class="gloss-def">Using someone's intellectual property without giving appropriate credit.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Copyright</div>
+      <div class="gloss-def">Legal protection of the rights of producers/owners of creative works.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Telecommuting</div>
+      <div class="gloss-def">Working from a remote location using electronic communication tools.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Turnaround Document</div>
+      <div class="gloss-def">A document produced by a computer, sent to a user, and returned for further processing.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Archiving</div>
+      <div class="gloss-def">Long-term storage of documents no longer in active use but retained for legal or historical reasons.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Blocked Style</div>
+      <div class="gloss-def">Letter/document format where all lines begin at the left margin.</div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">Facsimile (Fax)</div>
+      <div class="gloss-def">Electronic transmission of scanned documents over telephone networks.</div>
+    </div>
+  </div>
+
+  <!-- FINAL REVISION CHECKLIST -->
+  <div class="section-divider"></div>
+  <h2>Pre-Exam Revision Checklist</h2>
+  <p class="section-intro">Tick these off before your exam day.</p>
+
+  <div class="section-card">
+    <ul class="checklist">
+      <li>Know all 9 hardware input and output device types with examples</li>
+      <li>Can distinguish between Operating System software and Application software</li>
+      <li>Practice typing at 35+ wpm with correct posture and touch technique</li>
+      <li>Understand all standard manuscript/proofreading signs</li>
+      <li>Know blocked, indented, and semi-blocked letter styles and when to use each</li>
+      <li>Can produce a Notice of Meeting, Agenda, and Minutes</li>
+      <li>Know all international paper sizes (A3–DL)</li>
+      <li>Understand simple vs advanced tabulations — can apply Sum, Average, Min, Max</li>
+      <li>Can create a database with up to 5 fields and run a simple 1–2 field query</li>
+      <li>Know all types of specialised documents (legal, technical, literary, financial)</li>
+      <li>Understand email features: To, CC, BCC, attachments, folder organisation</li>
+      <li>Can name factors for selecting appropriate communication media</li>
+      <li>Distinguish manual vs electronic filing systems (advantages &amp; disadvantages)</li>
+      <li>Know file security measures: passwords, firewall, encryption, backup, overwrite protection</li>
+      <li>Understand versioning and metadata concepts</li>
+      <li>Can define intellectual property, copyright, plagiarism and describe how to avoid plagiarism</li>
+      <li>Know all 11 elements of desirable work habits and attitudes (Section IX, Obj. 7)</li>
+      <li>Reviewed mark scheme criteria for all three SBA profile dimensions</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  <strong>CSEC Electronic Document Preparation and Management</strong> &nbsp;·&nbsp; CXC 34/G/SYLL 12 &nbsp;·&nbsp; Revised 2016<br>
+  <span style="margin-top:6px;display:block;">Study guide compiled from the official CXC syllabus. Always refer to your teacher and the official CXC document for the most current requirements.</span>
+</footer>
+
+</body>
+</html>

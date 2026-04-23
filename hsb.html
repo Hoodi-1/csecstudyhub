@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSEC Human & Social Biology — Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8;
+    --ink: #1a1410;
+    --muted: #6b5e4e;
+    --rule: #d4c5b0;
+    --a: #c7473a;
+    --b: #2b6cb0;
+    --c: #276749;
+    --d: #744210;
+    --e: #553c9a;
+    --tag-a: #fff0ed;
+    --tag-b: #ebf4ff;
+    --tag-c: #e6f7ee;
+    --tag-d: #fffbeb;
+    --tag-e: #f5f0ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 3.5rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 30px,
+      rgba(255,255,255,.03) 30px,
+      rgba(255,255,255,.03) 31px
+    );
+  }
+  header .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,.5);
+    margin-bottom: .75rem;
+  }
+  header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: .5rem;
+  }
+  header h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,240,232,.65);
+  }
+  header .sub {
+    font-size: .9rem;
+    color: rgba(245,240,232,.6);
+    margin-top: .75rem;
+  }
+
+  /* ── EXAM SNAPSHOT ── */
+  .exam-bar {
+    background: white;
+    border-bottom: 1px solid var(--rule);
+    padding: 1.25rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  .exam-pill {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .82rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .exam-pill strong { color: var(--ink); }
+  .exam-pill .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+  /* ── TOC ── */
+  .toc {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 3rem;
+  }
+  .toc h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: .5rem;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    padding: .55rem .75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .15s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .toc-item:hover { background: var(--bg); }
+  .toc-badge {
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: .2em .5em;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .toc-item span { font-size: .875rem; font-weight: 500; }
+
+  /* ── SECTION CARDS ── */
+  .section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 2rem;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--rule);
+  }
+  .section-letter {
+    font-family: 'Fraunces', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .section-title-block h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .section-title-block p {
+    font-size: .8rem;
+    color: var(--muted);
+    margin-top: .2rem;
+  }
+
+  /* ── TOPIC BLOCKS ── */
+  .topic {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+  .topic-head {
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .topic-head h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .topic-head .toggle {
+    font-size: 1.2rem;
+    color: var(--muted);
+    transition: transform .25s;
+    flex-shrink: 0;
+  }
+  .topic.open .toggle { transform: rotate(45deg); }
+  .topic-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.1rem;
+  }
+  .topic.open .topic-body { display: block; }
+
+  /* ── CONTENT STYLES ── */
+  .key-points { list-style: none; }
+  .key-points li {
+    padding: .3rem 0 .3rem 1.25rem;
+    position: relative;
+    font-size: .875rem;
+    color: #2d2419;
+  }
+  .key-points li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-size: .8rem;
+  }
+
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: .6rem;
+    margin-top: .75rem;
+  }
+  .term-card {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: .6rem .75rem;
+  }
+  .term-card dt {
+    font-weight: 600;
+    font-size: .8rem;
+    color: var(--ink);
+    margin-bottom: .15rem;
+  }
+  .term-card dd {
+    font-size: .78rem;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .sub-label {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 1rem 0 .5rem;
+  }
+
+  .alert-box {
+    border-radius: 7px;
+    padding: .8rem 1rem;
+    font-size: .84rem;
+    margin-top: .9rem;
+    border-left: 3px solid;
+  }
+  .alert-box.tip { background: #f0fdf4; border-color: #4ade80; color: #166534; }
+  .alert-box.exam { background: #eff6ff; border-color: #60a5fa; color: #1e3a8a; }
+  .alert-box strong { font-weight: 600; }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+  .tag {
+    font-size: .72rem;
+    font-weight: 600;
+    padding: .2em .55em;
+    border-radius: 4px;
+    letter-spacing: .03em;
+  }
+
+  /* colour overrides per section */
+  #sec-a .section-letter { color: var(--a); }
+  #sec-a .topic-head { border-left: 3px solid var(--a); }
+  #sec-a .toc-badge { background: var(--tag-a); color: var(--a); }
+
+  #sec-b .section-letter { color: var(--b); }
+  #sec-b .topic-head { border-left: 3px solid var(--b); }
+  #sec-b .toc-badge { background: var(--tag-b); color: var(--b); }
+
+  #sec-c .section-letter { color: var(--c); }
+  #sec-c .topic-head { border-left: 3px solid var(--c); }
+  #sec-c .toc-badge { background: var(--tag-c); color: var(--c); }
+
+  #sec-d .section-letter { color: var(--d); }
+  #sec-d .topic-head { border-left: 3px solid var(--d); }
+  #sec-d .toc-badge { background: var(--tag-d); color: var(--d); }
+
+  #sec-e .section-letter { color: var(--e); }
+  #sec-e .topic-head { border-left: 3px solid var(--e); }
+  #sec-e .toc-badge { background: var(--tag-e); color: var(--e); }
+
+  /* ── EXAM FORMAT TABLE ── */
+  .exam-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .84rem;
+    margin-top: .75rem;
+  }
+  .exam-table th {
+    background: var(--ink);
+    color: var(--bg);
+    padding: .6rem .8rem;
+    text-align: left;
+    font-weight: 500;
+    font-size: .78rem;
+    letter-spacing: .03em;
+  }
+  .exam-table td {
+    padding: .6rem .8rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  .exam-table tr:last-child td { border-bottom: none; }
+  .exam-table tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+
+  /* ── PROGRESS CHECKLIST ── */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: .6rem;
+    padding: .35rem 0;
+    font-size: .875rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type=checkbox] {
+    margin-top: .25rem;
+    accent-color: var(--ink);
+    flex-shrink: 0;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2.5rem 0;
+  }
+
+  @media (max-width: 600px) {
+    .exam-bar { flex-direction: column; align-items: center; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .terms-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    header { background: #111; -webkit-print-color-adjust: exact; }
+    .topic-body { display: block !important; }
+    .toggle { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="label">CSEC Study Guide · CXC 35/G/SYLL 20</div>
+  <h1>Human &amp; <em>Social</em> Biology</h1>
+  <p class="sub">Complete syllabus coverage · Effective for May–June examinations</p>
+</header>
+
+<div class="exam-bar">
+  <div class="exam-pill"><span class="dot" style="color:#c7473a"></span> Paper 01 <strong>60 MCQ · 30%</strong></div>
+  <div class="exam-pill"><span class="dot" style="color:#2b6cb0"></span> Paper 02 <strong>6 Questions · 50%</strong></div>
+  <div class="exam-pill"><span class="dot" style="color:#276749"></span> SBA (Paper 031) <strong>Research Project · 20%</strong></div>
+  <div class="exam-pill"><span class="dot" style="color:#744210"></span> Alt SBA (Paper 032) <strong>Private Candidates · 20%</strong></div>
+</div>
+
+<div class="wrap">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <h2>Sections at a Glance</h2>
+    <div class="toc-grid">
+      <a class="toc-item" href="#sec-a"><span class="toc-badge" style="background:#fff0ed;color:#c7473a">A</span><span>Living Organisms &amp; Environment</span></a>
+      <a class="toc-item" href="#sec-b"><span class="toc-badge" style="background:#ebf4ff;color:#2b6cb0">B</span><span>Life Processes</span></a>
+      <a class="toc-item" href="#sec-c"><span class="toc-badge" style="background:#e6f7ee;color:#276749">C</span><span>Heredity &amp; Variation</span></a>
+      <a class="toc-item" href="#sec-d"><span class="toc-badge" style="background:#fffbeb;color:#744210">D</span><span>Diseases &amp; Impact on Humans</span></a>
+      <a class="toc-item" href="#sec-e"><span class="toc-badge" style="background:#f5f0ff;color:#553c9a">E</span><span>Health Practices &amp; Environment</span></a>
+      <a class="toc-item" href="#sec-exam"><span class="toc-badge" style="background:#f3f4f6;color:#374151">📋</span><span>Exam Format &amp; SBA</span></a>
+    </div>
+  </nav>
+
+  <!-- ═══ SECTION A ═══ -->
+  <section class="section" id="sec-a">
+    <div class="section-header">
+      <div class="section-letter">A</div>
+      <div class="section-title-block">
+        <h2>Living Organisms &amp; the Environment</h2>
+        <p>Cells · Photosynthesis · Food Webs · Carbon Cycle</p>
+      </div>
+    </div>
+
+    <div class="topic open">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Cell Biology &amp; Specialisation</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <p class="sub-label">Characteristics of Living Organisms</p>
+        <ul class="key-points">
+          <li>Nutrition, Respiration, Excretion, Growth, Irritability, Movement, Reproduction (MRS NERG)</li>
+        </ul>
+        <p class="sub-label">Cell Structures &amp; Functions</p>
+        <ul class="key-points">
+          <li><strong>Nucleus</strong> — controls cell activities; contains DNA</li>
+          <li><strong>Cell membrane</strong> — selectively permeable; controls what enters/exits</li>
+          <li><strong>Mitochondria</strong> — site of aerobic respiration / ATP production</li>
+          <li><strong>Chloroplasts</strong> — site of photosynthesis (plant cells only)</li>
+          <li><strong>Cell wall</strong> — rigid cellulose structure (plant cells only)</li>
+          <li><strong>Ribosomes</strong> — site of protein synthesis</li>
+          <li><strong>Vacuoles</strong> — storage; large in plant cells, small in animal cells</li>
+          <li><strong>Endoplasmic reticulum</strong> — transport network within cell</li>
+        </ul>
+        <p class="sub-label">Specialised Cells to Know</p>
+        <ul class="key-points">
+          <li>Epithelial, sperm, egg, nerve (neurone), muscle, connective tissue cells</li>
+          <li>Cells → Tissues → Organs → Organ Systems</li>
+        </ul>
+        <p class="sub-label">Microbes (for diagrams)</p>
+        <ul class="key-points">
+          <li>Virus, Bacteria, Fungi — know basic labelled structures</li>
+        </ul>
+        <div class="alert-box exam"><strong>Exam tip:</strong> Be ready to label diagrams of plant vs. animal cells and state differences (e.g. cell wall, chloroplasts, large vacuole in plant only).</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Transport: Diffusion, Osmosis &amp; Active Transport</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Simple Diffusion</dt><dd>Movement of particles from high → low concentration. Passive (no energy).</dd></dl>
+          <dl class="term-card"><dt>Osmosis</dt><dd>Diffusion of water through a semi-permeable membrane from dilute → concentrated solution.</dd></dl>
+          <dl class="term-card"><dt>Active Transport</dt><dd>Movement against a concentration gradient. Requires ATP energy.</dd></dl>
+        </div>
+        <ul class="key-points" style="margin-top:.9rem">
+          <li>Examples in plants: water uptake by root hair cells (osmosis); mineral absorption (active transport)</li>
+          <li>Examples in animals: glucose absorption in intestine (active transport)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Photosynthesis</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Site: Chloroplast (chlorophyll absorbs light)</li>
+          <li>Word equation: Carbon dioxide + Water → Glucose + Oxygen (using light)</li>
+          <li>Chemical: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</li>
+          <li>Products: Glucose (used for energy, stored as starch) and Oxygen (released)</li>
+          <li>Light and dark reactions — <em>not required for CSEC</em></li>
+        </ul>
+        <div class="alert-box tip"><strong>Practical:</strong> Simple starch test on variegated and non-variegated leaves to investigate the role of light and chlorophyll.</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Food Chains, Food Webs &amp; Energy Flow</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Producer</dt><dd>Plants; make food via photosynthesis.</dd></dl>
+          <dl class="term-card"><dt>Primary Consumer</dt><dd>Herbivore; eats producers.</dd></dl>
+          <dl class="term-card"><dt>Secondary Consumer</dt><dd>Carnivore; eats primary consumers.</dd></dl>
+          <dl class="term-card"><dt>Trophic Level</dt><dd>Position in food chain; energy decreases at each level.</dd></dl>
+          <dl class="term-card"><dt>Bioaccumulation</dt><dd>Build-up of toxins (e.g. pesticides) through trophic levels — effects on human health.</dd></dl>
+        </div>
+        <ul class="key-points" style="margin-top:.9rem">
+          <li>Know pyramids of numbers AND biomass — analysis required</li>
+          <li>Habitats: terrestrial, marine and freshwater aquatic</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Carbon Cycle &amp; Global Warming</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>CO₂ absorbed by plants in photosynthesis → converted to carbohydrates</li>
+          <li>CO₂ released by: respiration, decomposition, combustion, decay</li>
+          <li>Fossil fuels formed from ancient organisms; burning releases stored CO₂</li>
+          <li>Bacterial and fungal decomposition releases CO₂ from dead organisms</li>
+          <li>Greenhouse effect: excess CO₂ traps heat → global warming</li>
+          <li>Impact of global warming: rising sea levels, extreme weather, food security threats</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION B ═══ -->
+  <section class="section" id="sec-b">
+    <div class="section-header">
+      <div class="section-letter">B</div>
+      <div class="section-title-block">
+        <h2>Life Processes</h2>
+        <p>Nutrition · Respiration · Circulation · Skeletal · Excretion · Nervous · Reproductive</p>
+      </div>
+    </div>
+
+    <div class="topic open">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>B1 — Nutrition</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <p class="sub-label">Nutrients</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Macronutrients</dt><dd>Carbohydrates, Lipids, Proteins — needed in large amounts.</dd></dl>
+          <dl class="term-card"><dt>Micronutrients</dt><dd>Vitamins (A, B1, C, D, E, K) and Minerals (Ca, Mg, F, I, P, Na, Fe) — small amounts.</dd></dl>
+          <dl class="term-card"><dt>Fat-soluble vitamins</dt><dd>A, D, E, K — stored in body fat.</dd></dl>
+          <dl class="term-card"><dt>Water-soluble vitamins</dt><dd>B, C — not stored; needed regularly.</dd></dl>
+        </div>
+        <p class="sub-label">Deficiency Diseases</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Night blindness</dt><dd>Vitamin A deficiency</dd></dl>
+          <dl class="term-card"><dt>Rickets</dt><dd>Vitamin D / calcium deficiency</dd></dl>
+          <dl class="term-card"><dt>Goitre</dt><dd>Iodine deficiency</dd></dl>
+          <dl class="term-card"><dt>Anaemia</dt><dd>Iron deficiency</dd></dl>
+        </div>
+        <p class="sub-label">Malnutrition &amp; BMI</p>
+        <ul class="key-points">
+          <li>Kwashiorkor (protein deficiency) vs Marasmus (energy + protein deficiency)</li>
+          <li>Obesity, anorexia, bulimia — definitions and health consequences</li>
+          <li>BMI = Weight(kg) / Height(m)² — also assess waist circumference</li>
+          <li>Balanced diet depends on age, sex, and occupation</li>
+        </ul>
+        <p class="sub-label">Digestion</p>
+        <ul class="key-points">
+          <li>Mechanical digestion (mastication) and Chemical digestion (enzymes)</li>
+          <li>Key enzymes: amylase (starch→glucose), protease (protein→amino acids), lipase (fat→fatty acids + glycerol)</li>
+          <li>Absorption occurs in the small intestine via villi — know the structure of a villus</li>
+          <li>Glucose and amino acids → hepatic portal vein → liver; fats → lymphatic system</li>
+          <li>Role of water as solvent and transport medium</li>
+          <li>Dietary fibre — prevents constipation; link to obesity</li>
+        </ul>
+        <p class="sub-label">Teeth</p>
+        <ul class="key-points">
+          <li>Types: incisors, canines, premolars, molars — roles in digestion</li>
+          <li>Tooth structure: enamel, dentine, pulp cavity, cement</li>
+          <li>Tooth decay: bacteria + sugar → acid → demineralisation</li>
+          <li>Care: brush twice daily, floss, fluoridation, bi-annual dental check-ups</li>
+        </ul>
+        <div class="alert-box exam"><strong>Practical:</strong> Food tests — Benedict's (reducing sugars), Iodine (starch), Biuret (protein), ethanol emulsion (fat), and enzyme activity experiments (amylase/catalase at different temperatures &amp; pH).</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>B2 — The Respiratory System</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Breathing mechanism: diaphragm and intercostal muscles change chest volume → pressure changes → air moves in/out</li>
+          <li>Gaseous exchange in alveoli: large moist surface area, thin walls, copious blood supply</li>
+          <li>Aerobic respiration: C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + <strong>ATP</strong> (lots of energy)</li>
+          <li>Anaerobic respiration (in humans): Glucose → Lactic acid + small ATP; creates oxygen debt</li>
+          <li>ADP + Pᵢ → ATP (energy stored); ATP → ADP + Pᵢ (energy released)</li>
+          <li>Vital capacity = maximum air exhaled after maximum inhalation</li>
+          <li>Factors affecting breathing rate: exercise, smoking, anxiety, drugs, altitude, obesity</li>
+          <li>CPR technique — know steps including disposal device for mouth-to-mouth</li>
+        </ul>
+        <div class="alert-box tip"><strong>Smoking effects:</strong> nicotine addiction, lung damage (emphysema), carcinogens, reduced O₂-carrying capacity, hypertension, heart disease. Applies to cigarettes, marijuana, vaping, hookah.</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>B3 — The Circulatory System</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <p class="sub-label">Blood Components</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Red blood cells</dt><dd>Biconcave; carry O₂ via haemoglobin; no nucleus.</dd></dl>
+          <dl class="term-card"><dt>White blood cells</dt><dd>Phagocytes (engulf pathogens) &amp; lymphocytes (produce antibodies).</dd></dl>
+          <dl class="term-card"><dt>Platelets</dt><dd>Clotting; with fibrinogen → fibrin clot.</dd></dl>
+          <dl class="term-card"><dt>Plasma vs Serum</dt><dd>Plasma = fluid with clotting factors; Serum = plasma without clotting factors.</dd></dl>
+        </div>
+        <p class="sub-label">Blood Vessels</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Arteries</dt><dd>Thick walls, narrow lumen, no valves; carry blood away from heart.</dd></dl>
+          <dl class="term-card"><dt>Veins</dt><dd>Thin walls, wide lumen, have valves; carry blood to heart.</dd></dl>
+          <dl class="term-card"><dt>Capillaries</dt><dd>One cell thick; site of exchange with tissues.</dd></dl>
+        </div>
+        <p class="sub-label">Heart &amp; Circulation</p>
+        <ul class="key-points">
+          <li>4 chambers: right/left atria and right/left ventricles</li>
+          <li>Left ventricle has thicker wall (pumps to whole body — systemic circulation)</li>
+          <li>Pulmonary circulation: heart → lungs → heart</li>
+          <li>Systolic pressure (heart contracting) vs Diastolic (heart relaxing)</li>
+          <li>Modifiable risk factors for hypertension: salt, fat, alcohol, smoking, stress</li>
+          <li>Blood groups: A, B, AB, O — antigens and antibodies; Rh factor in pregnancy</li>
+          <li>Clotting cascade: platelets → thromboplastin → prothrombin → thrombin → fibrinogen → fibrin</li>
+          <li>Heart diseases: atherosclerosis, coronary thrombosis, hypertension</li>
+        </ul>
+        <p class="sub-label">Lymphatic System</p>
+        <ul class="key-points">
+          <li>Tissue fluid → lymph → lymph vessels → lymph nodes (filter pathogens) → back to blood</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>B4 — Skeletal System &amp; Movement</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Functions of skeleton: movement, locomotion, protection, support, breathing, blood cell production, mineral storage</li>
+          <li>Key bones: cranium, vertebral column, rib cage, sternum, pelvic girdle, humerus, radius, ulna, femur, tibia, fibula, patella</li>
+          <li>Bone vs Cartilage: bone is hard/mineralised; cartilage is flexible/at joints</li>
+          <li>Tendons connect muscle to bone; Ligaments connect bone to bone</li>
+        </ul>
+        <p class="sub-label">Joints</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Hinge joint</dt><dd>Elbow, knee — flexion and extension only.</dd></dl>
+          <dl class="term-card"><dt>Ball &amp; socket</dt><dd>Hip, shoulder — wide range of movement.</dd></dl>
+          <dl class="term-card"><dt>Fixed joint</dt><dd>Skull sutures — no movement.</dd></dl>
+          <dl class="term-card"><dt>Synovial joint</dt><dd>Has synovial fluid for lubrication.</dd></dl>
+        </div>
+        <p class="sub-label">Muscles</p>
+        <ul class="key-points">
+          <li>Skeletal (voluntary), Smooth (involuntary, organs), Cardiac (involuntary, heart)</li>
+          <li>Antagonistic muscles: biceps (flexion) and triceps (extension) of the upper arm</li>
+          <li>Muscle tone — maintained by exercise; factors that adversely affect skeletal system: poor posture, inappropriate footwear, heavy lifting</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>B5 — Excretion &amp; Homeostasis</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Excretion: removal of metabolic waste (≠ egestion which is removal of undigested food)</li>
+          <li>Organs of excretion: Lungs (CO₂), Skin (sweat/salts), Kidneys (urea in urine)</li>
+          <li>Kidney: ultrafiltration in glomerulus → selective reabsorption in nephron → urine</li>
+          <li>Renal dialysis — briefly understand purpose and process</li>
+          <li>Skin layers: epidermis, dermis, adipose tissue; sweat glands, erector muscles, hair follicles, capillaries</li>
+        </ul>
+        <p class="sub-label">Homeostasis &amp; Feedback</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Homeostasis</dt><dd>Maintenance of a stable internal environment.</dd></dl>
+          <dl class="term-card"><dt>Negative feedback</dt><dd>Corrects deviation from the set point (most common).</dd></dl>
+          <dl class="term-card"><dt>Positive feedback</dt><dd>Amplifies change from the set point.</dd></dl>
+        </div>
+        <ul class="key-points" style="margin-top:.9rem">
+          <li>Blood sugar: Insulin (lowers glucose) and Glucagon (raises glucose) from pancreas</li>
+          <li>Water regulation: ADH from pituitary — increases water reabsorption in kidney</li>
+          <li>Temperature regulation: vasodilation (cool down), vasoconstriction (warm up), sweating, shivering</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>B6 — Coordination &amp; Control</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <p class="sub-label">Nervous System</p>
+        <ul class="key-points">
+          <li>CNS: Brain + Spinal Cord; Peripheral NS: spinal/cranial nerves + autonomic NS</li>
+          <li>Neurone types: sensory, relay, motor — know their roles</li>
+          <li>Synapse: chemical transmitters carry impulse across gap between neurones</li>
+          <li>Brain regions: cerebrum (thought), cerebellum (balance/coordination), medulla oblongata (breathing/heart rate), hypothalamus (homeostasis), pituitary (hormones)</li>
+          <li>Reflex arc: stimulus → receptor → sensory neurone → relay neurone → motor neurone → effector → response (involuntary, fast)</li>
+        </ul>
+        <p class="sub-label">Eye</p>
+        <ul class="key-points">
+          <li>Know labelled internal structure; how images are formed (refraction by lens)</li>
+          <li>Accommodation: ciliary muscles and suspensory ligaments change lens shape</li>
+          <li>Defects: myopia (concave lens), hyperopia (convex lens), astigmatism, glaucoma, cataracts; link to diabetes</li>
+        </ul>
+        <p class="sub-label">Endocrine System</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Pituitary</dt><dd>ADH, FSH, LH, Growth hormone — "master gland"</dd></dl>
+          <dl class="term-card"><dt>Thyroid</dt><dd>Thyroxine — metabolic rate</dd></dl>
+          <dl class="term-card"><dt>Pancreas</dt><dd>Insulin &amp; Glucagon — blood sugar</dd></dl>
+          <dl class="term-card"><dt>Adrenal</dt><dd>Adrenaline — fight or flight</dd></dl>
+          <dl class="term-card"><dt>Ovaries</dt><dd>Oestrogen &amp; Progesterone</dd></dl>
+          <dl class="term-card"><dt>Testes</dt><dd>Testosterone</dd></dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>B7 — Reproductive System</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Sexual reproduction: meiosis, gametes, variation; Asexual: mitosis, identical offspring</li>
+          <li>Know labelled diagrams of male and female reproductive systems</li>
+          <li>Related disorders: ovarian, cervical, prostate cancers</li>
+        </ul>
+        <p class="sub-label">Menstrual Cycle &amp; Hormones</p>
+        <ul class="key-points">
+          <li>FSH → follicle develops → Oestrogen → LH surge → ovulation → Progesterone → if no fertilisation, levels drop → menstruation</li>
+          <li>Ovulation → fertilisation → implantation → embryo development</li>
+          <li>Placenta functions: gas exchange, nutrient transfer, waste removal</li>
+          <li>Birth stages: dilation (stage 1), expulsion of fetus (stage 2), placenta expelled (stage 3); role of oxytocin</li>
+        </ul>
+        <p class="sub-label">Family Planning &amp; Contraception</p>
+        <ul class="key-points">
+          <li>Methods: natural, barrier, hormonal, surgical</li>
+          <li>Know advantages and disadvantages of each</li>
+          <li>Abortion: spontaneous (miscarriage) and induced; ethical considerations</li>
+          <li>Pre-natal/post-natal care: immunisation, balanced diet, breastfeeding benefits, avoiding drugs/alcohol/smoking</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION C ═══ -->
+  <section class="section" id="sec-c">
+    <div class="section-header">
+      <div class="section-letter">C</div>
+      <div class="section-title-block">
+        <h2>Heredity &amp; Variation</h2>
+        <p>DNA · Mitosis · Meiosis · Inheritance · Genetic Engineering</p>
+      </div>
+    </div>
+
+    <div class="topic open">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>DNA, Chromosomes &amp; Cell Division</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <div class="terms-grid">
+          <dl class="term-card"><dt>DNA</dt><dd>Deoxyribonucleic acid — carries genetic instructions.</dd></dl>
+          <dl class="term-card"><dt>Gene</dt><dd>Segment of DNA coding for a specific protein/trait.</dd></dl>
+          <dl class="term-card"><dt>Chromosome</dt><dd>Coiled DNA; humans have 46 (23 pairs).</dd></dl>
+          <dl class="term-card"><dt>Allele</dt><dd>Alternative forms of a gene at a specific locus.</dd></dl>
+          <dl class="term-card"><dt>Diploid (2n)</dt><dd>Two sets of chromosomes (46 in humans).</dd></dl>
+          <dl class="term-card"><dt>Haploid (n)</dt><dd>One set of chromosomes (23 in gametes).</dd></dl>
+        </div>
+        <p class="sub-label">Mitosis vs Meiosis</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Mitosis</dt><dd>Produces 2 identical diploid daughter cells. Purpose: growth, repair, asexual reproduction.</dd></dl>
+          <dl class="term-card"><dt>Meiosis</dt><dd>Produces 4 haploid cells (gametes). Introduces variation via crossing over.</dd></dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Genetics &amp; Inheritance</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Dominant</dt><dd>Expressed when one or two copies present (capital letter, e.g. T).</dd></dl>
+          <dl class="term-card"><dt>Recessive</dt><dd>Only expressed when two copies present (lowercase, e.g. t).</dd></dl>
+          <dl class="term-card"><dt>Homozygous</dt><dd>Two identical alleles (TT or tt).</dd></dl>
+          <dl class="term-card"><dt>Heterozygous</dt><dd>Two different alleles (Tt).</dd></dl>
+          <dl class="term-card"><dt>Genotype</dt><dd>Genetic makeup (e.g. Tt).</dd></dl>
+          <dl class="term-card"><dt>Phenotype</dt><dd>Observable trait (e.g. tongue roller).</dd></dl>
+        </div>
+        <p class="sub-label">Monohybrid Inheritance Examples</p>
+        <ul class="key-points">
+          <li>Albinism and tongue rolling — use Punnett squares for crosses</li>
+          <li>Expected ratios: 3:1 phenotypic (Aa × Aa); 1:2:1 genotypic</li>
+        </ul>
+        <p class="sub-label">Sex-Linked Inheritance</p>
+        <ul class="key-points">
+          <li>Sex determined by X and Y chromosomes (XX = female, XY = male)</li>
+          <li>X-linked conditions: haemophilia and colour blindness — females are carriers, males are affected</li>
+          <li>Know genetic diagrams for these crosses</li>
+        </ul>
+        <div class="alert-box exam"><strong>Exam tip:</strong> You must be able to draw and interpret Punnett squares and calculate genotypic and phenotypic ratios.</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Variation, Mutations &amp; Natural Selection</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Continuous variation</dt><dd>Gradual range (height, weight) — mostly genetic + environmental.</dd></dl>
+          <dl class="term-card"><dt>Discontinuous variation</dt><dd>Distinct categories (blood type, tongue rolling) — mostly genetic.</dd></dl>
+          <dl class="term-card"><dt>Mutation</dt><dd>Permanent change in DNA; can cause Down Syndrome, Klinefelter's, Turner's, albinism.</dd></dl>
+        </div>
+        <ul class="key-points" style="margin-top:.9rem">
+          <li>Natural selection: antibiotic-resistant bacteria is the key example</li>
+          <li>Sickle cell anaemia: high prevalence in people of African descent — natural selection advantage against malaria</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Genetic Engineering &amp; GMOs</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Definition: manipulation of an organism's genome using biotechnology</li>
+          <li>Recombinant DNA: inserting human insulin gene into bacteria (E. coli) using plasmids</li>
+          <li>GMOs: genetically modified organisms in food (e.g. pest-resistant crops) and medicine</li>
+          <li>Advantages: increased yield, disease-resistant crops, cheaper medicines</li>
+          <li>Disadvantages: unknown long-term effects, ethical concerns, biodiversity reduction</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION D ═══ -->
+  <section class="section" id="sec-d">
+    <div class="section-header">
+      <div class="section-letter">D</div>
+      <div class="section-title-block">
+        <h2>Diseases &amp; Their Impact on Humans</h2>
+        <p>Communicable · Non-communicable · Vectors · Immunity · Drugs</p>
+      </div>
+    </div>
+
+    <div class="topic open">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Classification of Disease</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Communicable diseases</dt><dd>Caused by pathogens; spread person to person (STIs, fungal, vector-borne).</dd></dl>
+          <dl class="term-card"><dt>Non-communicable (NCDs)</dt><dd>Not spread between people; includes lifestyle diseases, nutritional deficiencies, inherited disorders, mental health.</dd></dl>
+          <dl class="term-card"><dt>Signs</dt><dd>Objective, measurable indicators (fever, rash) — observed by a clinician.</dd></dl>
+          <dl class="term-card"><dt>Symptoms</dt><dd>Subjective experiences reported by patient (pain, fatigue).</dd></dl>
+          <dl class="term-card"><dt>Epidemic</dt><dd>Disease outbreak in a region.</dd></dl>
+          <dl class="term-card"><dt>Pandemic</dt><dd>Worldwide disease outbreak.</dd></dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Specific Diseases — Causes, Symptoms, Treatment, Prevention</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <p class="sub-label">Respiratory</p>
+        <div class="tag-list">
+          <span class="tag" style="background:#fff0ed;color:#c7473a">Asthma</span>
+          <span class="tag" style="background:#fff0ed;color:#c7473a">Influenza</span>
+          <span class="tag" style="background:#fff0ed;color:#c7473a">Bronchitis</span>
+        </div>
+        <ul class="key-points" style="margin-top:.7rem">
+          <li>For each: causes, signs/symptoms, treatment modality, prevention, effect on respiratory tract</li>
+        </ul>
+        <p class="sub-label">Gastrointestinal</p>
+        <div class="tag-list">
+          <span class="tag" style="background:#fffbeb;color:#744210">Cholera</span>
+          <span class="tag" style="background:#fffbeb;color:#744210">Gastroenteritis</span>
+        </div>
+        <ul class="key-points" style="margin-top:.7rem">
+          <li>Caused by contaminated food/water; proper hygiene in food preparation is key prevention</li>
+        </ul>
+        <p class="sub-label">Sexually Transmitted Infections (STIs)</p>
+        <div class="tag-list">
+          <span class="tag" style="background:#f5f0ff;color:#553c9a">Gonorrhoea</span>
+          <span class="tag" style="background:#f5f0ff;color:#553c9a">Syphilis</span>
+          <span class="tag" style="background:#f5f0ff;color:#553c9a">HPV</span>
+          <span class="tag" style="background:#f5f0ff;color:#553c9a">Herpes</span>
+          <span class="tag" style="background:#f5f0ff;color:#553c9a">Chlamydia</span>
+          <span class="tag" style="background:#f5f0ff;color:#553c9a">HIV/AIDS</span>
+        </div>
+        <ul class="key-points" style="margin-top:.7rem">
+          <li>HIV: mode of action on immune system; antiretroviral drugs (with side effects); ethical considerations including discrimination</li>
+          <li>Effects of STIs (gonorrhoea, syphilis, herpes) on pregnant mother and fetus</li>
+        </ul>
+        <p class="sub-label">Chronic/Lifestyle Diseases</p>
+        <div class="tag-list">
+          <span class="tag" style="background:#e6f7ee;color:#276749">Obesity</span>
+          <span class="tag" style="background:#e6f7ee;color:#276749">Diabetes (Type I &amp; II)</span>
+          <span class="tag" style="background:#e6f7ee;color:#276749">Hypertension</span>
+          <span class="tag" style="background:#e6f7ee;color:#276749">Coronary Heart Disease</span>
+        </div>
+        <ul class="key-points" style="margin-top:.7rem">
+          <li>Importance of diet and exercise in prevention and management</li>
+        </ul>
+        <p class="sub-label">Cancers</p>
+        <ul class="key-points">
+          <li>Respiratory tract, cervical, breast, ovarian, uterine, colon, prostate</li>
+          <li>Causes, symptoms, treatment, risk reduction strategies</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Vectors &amp; Mosquito-Borne Diseases</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Vector: organism that transmits a pathogen (mosquito, housefly, rat)</li>
+          <li>Know the life cycle of mosquito AND housefly (labelled diagrams required)</li>
+        </ul>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Malaria</dt><dd>Plasmodium parasite via Anopheles mosquito.</dd></dl>
+          <dl class="term-card"><dt>Dengue</dt><dd>Virus (strains I–IV) via Aedes mosquito.</dd></dl>
+          <dl class="term-card"><dt>Zika</dt><dd>Virus via Aedes mosquito; risks in pregnancy.</dd></dl>
+          <dl class="term-card"><dt>Chikungunya</dt><dd>Virus via Aedes mosquito; joint pain.</dd></dl>
+        </div>
+        <p class="sub-label">Vector Control Methods</p>
+        <ul class="key-points">
+          <li>Biological (natural predators), chemical (pesticides), mechanical (nets, screens), sanitary (removing stagnant water)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Immunity, Sterilisation &amp; Drugs</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <p class="sub-label">Types of Immunity</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Natural active</dt><dd>Body produces antibodies after infection.</dd></dl>
+          <dl class="term-card"><dt>Natural passive</dt><dd>Antibodies passed from mother to baby (breast milk/placenta).</dd></dl>
+          <dl class="term-card"><dt>Artificial active</dt><dd>Vaccination — stimulates antibody production.</dd></dl>
+          <dl class="term-card"><dt>Artificial passive</dt><dd>Injection of ready-made antibodies/antiserum.</dd></dl>
+        </div>
+        <p class="sub-label">Microorganism Control</p>
+        <ul class="key-points">
+          <li>Sterilisation methods: UHT, pasteurisation, autoclaving, boiling, canning</li>
+          <li>Disinfectants (chlorine, bleach) used on surfaces; Antiseptics used on skin — know the difference</li>
+          <li>Antibiotics kill/inhibit bacteria — know definition of antigen, antibody, antitoxin</li>
+        </ul>
+        <p class="sub-label">Drugs</p>
+        <ul class="key-points">
+          <li>Classes: stimulants, depressants, hallucinogens, narcotics</li>
+          <li>Prescription drugs: opioids, sedatives, painkillers, medicinal marijuana</li>
+          <li>Non-prescription: cocaine, heroin, ecstasy, alcohol, marijuana</li>
+          <li>Physiological and psychological effects; dependence; social/economic impact on individual, family, community</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION E ═══ -->
+  <section class="section" id="sec-e">
+    <div class="section-header">
+      <div class="section-letter">E</div>
+      <div class="section-title-block">
+        <h2>Health Practices &amp; the Environment</h2>
+        <p>Pollution · Water · Sewage · Waste Management</p>
+      </div>
+    </div>
+
+    <div class="topic open">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Pollution</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Pollutants: domestic, industrial (thermal, heavy metals, oil dumping), agricultural</li>
+          <li>Air pollution: combustion of fuels; water pollution: sewage disposal, agricultural runoff</li>
+          <li>Eutrophication: excess nutrients → algal bloom → oxygen depletion in water</li>
+          <li>Control methods: renewable energy, legal regulations, improved waste management</li>
+          <li>Link to global warming and food/land security (see Section A)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Water: Cycle, Purification &amp; Testing</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Water cycle: evaporation → condensation → precipitation → run-off → transpiration → filtration through limestone</li>
+          <li>Home purification: boiling, purification tablets, chlorine/bleach</li>
+          <li>Large-scale purification: screening → sedimentation → filtration → chlorination</li>
+          <li>Testing water for bacteria: agar plate method</li>
+          <li>Contaminated water → cholera, gastroenteritis; human activities degrade water supplies</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Sewage Disposal &amp; Solid Waste</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <p class="sub-label">Sewage Treatment</p>
+        <ul class="key-points">
+          <li>Methods: biological filter and activated sludge — microorganisms break down organic matter</li>
+          <li>Improper disposal: contamination, spread of disease, eutrophication</li>
+        </ul>
+        <p class="sub-label">Solid Waste</p>
+        <ul class="key-points">
+          <li>Dump vs Landfill — know the distinction; landfills are engineered with liners and drainage</li>
+          <li>Domestic refuse methods: composting, separation, bio-diesel, collection, burning</li>
+          <li>Biodegradable (organic matter) vs Non-biodegradable (plastics, metals)</li>
+          <li>3Rs: Reduce, Reuse, Recycle — know examples of recyclable materials</li>
+        </ul>
+        <div class="alert-box tip"><strong>Caribbean context:</strong> Landfill management is a major issue in the region. Be ready to discuss impacts and importance of landfills specifically for Caribbean territories.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══ EXAM FORMAT ═══ -->
+  <section class="section" id="sec-exam">
+    <div class="section-header">
+      <div class="section-letter" style="color:#374151;font-size:2.5rem">📋</div>
+      <div class="section-title-block">
+        <h2>Exam Format &amp; SBA Guide</h2>
+        <p>Papers, marks allocation, and SBA research project requirements</p>
+      </div>
+    </div>
+
+    <div class="topic open">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Paper Breakdown &amp; Mark Weighting</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <table class="exam-table">
+          <thead>
+            <tr><th>Paper</th><th>Format</th><th>Time</th><th>Weight</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Paper 01</strong></td><td>60 multiple-choice items (all sections)</td><td>1h 15min</td><td>30%</td></tr>
+            <tr><td><strong>Paper 02</strong></td><td>4 structured questions (incl. 1 data analysis) + 2 structured essays; all compulsory</td><td>2h</td><td>50%</td></tr>
+            <tr><td><strong>Paper 031 (SBA)</strong></td><td>Research project on health/environmental issue — school candidates</td><td>—</td><td>20%</td></tr>
+            <tr><td><strong>Paper 032</strong></td><td>Case study questions — private/January candidates only</td><td>1h 15min</td><td>20%</td></tr>
+          </tbody>
+        </table>
+        <div class="alert-box exam" style="margin-top:1rem"><strong>Profile dimensions:</strong> Knowledge &amp; Comprehension (KC) and Use of Knowledge (UK). Both appear across all papers. UK includes Application, Analysis, Synthesis, and Evaluation.</div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>SBA Research Project — Key Requirements</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Topic: current health-related OR environmental issue with socio-economic impacts</li>
+          <li>Max <strong>1,000 words</strong> (excluding bibliography, charts, appendices); penalty for exceeding by 150+ words</li>
+          <li>Must present data in at least <strong>two</strong> forms (table, graph, chart, etc.)</li>
+          <li>Individual write-up even if data collected in groups of 3–5</li>
+        </ul>
+        <p class="sub-label">Report Structure (in order)</p>
+        <ul class="checklist">
+          <li><input type="checkbox"> Cover page (candidate number, subject, date)</li>
+          <li><input type="checkbox"> Table of contents</li>
+          <li><input type="checkbox"> Introduction — background/overview, problem statement, research objective</li>
+          <li><input type="checkbox"> Methodology — data collection, instruments, limitations</li>
+          <li><input type="checkbox"> Presentation of data (minimum 2 forms, correctly labelled)</li>
+          <li><input type="checkbox"> Analysis and interpretation of data</li>
+          <li><input type="checkbox"> Conclusion</li>
+          <li><input type="checkbox"> Recommendations (at least 2)</li>
+          <li><input type="checkbox"> Reflection</li>
+          <li><input type="checkbox"> Bibliography</li>
+          <li><input type="checkbox"> Appendices</li>
+        </ul>
+        <p class="sub-label">SBA Mark Allocation (out of 40)</p>
+        <div class="terms-grid">
+          <dl class="term-card"><dt>Background/Overview</dt><dd>2 marks</dd></dl>
+          <dl class="term-card"><dt>Problem Statement</dt><dd>2 marks</dd></dl>
+          <dl class="term-card"><dt>Research Objective</dt><dd>2 marks</dd></dl>
+          <dl class="term-card"><dt>Methodology</dt><dd>8 marks</dd></dl>
+          <dl class="term-card"><dt>Presentation of Data</dt><dd>5 marks</dd></dl>
+          <dl class="term-card"><dt>Analysis &amp; Interpretation</dt><dd>Remaining marks</dd></dl>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <h3>Top Exam Tips</h3>
+        <span class="toggle">+</span>
+      </div>
+      <div class="topic-body">
+        <ul class="key-points">
+          <li>Always <strong>label diagrams fully</strong> — many marks are awarded for labelled structures</li>
+          <li>Learn word AND chemical equations for photosynthesis and respiration</li>
+          <li>Practise constructing AND interpreting tables, graphs, and charts — this appears in every section</li>
+          <li>Understand Caribbean-specific examples: dengue, chikungunya, Caribbean food groups, obesity trends in the region</li>
+          <li>For genetics questions: always show full workings with Punnett squares</li>
+          <li>Paper 02 includes <strong>authentic scenarios</strong> — apply your knowledge, don't just recall facts</li>
+          <li>Know the <strong>link between topics</strong>: e.g. smoking → respiratory system → circulatory system → cancer</li>
+          <li>For data analysis questions: describe the trend, give specific values, suggest an explanation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  function toggle(headEl) {
+    const topic = headEl.closest('.topic');
+    topic.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
