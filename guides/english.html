@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSEC English Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --eng-a: #b45309;
+    --eng-a-accent: #fbbf24;
+    --eng-a-light: #fef3c7;
+    --eng-a-mid: #f59e0b;
+    --eng-b: #1e3a5f;
+    --eng-b-accent: #7dd3fc;
+    --eng-b-light: #e0f2fe;
+    --eng-b-mid: #38bdf8;
+    --drama: #6b21a8;
+    --drama-accent: #c084fc;
+    --poetry: #9d174d;
+    --poetry-accent: #f9a8d4;
+    --prose: #065f46;
+    --prose-accent: #6ee7b7;
+    --dark: #0c0c10;
+    --dark2: #161620;
+    --dark3: #1e1e2a;
+    --text: #eaeaf5;
+    --text-muted: #8888a8;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.65;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    padding: 64px 40px 56px;
+    background: var(--dark2);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 70% at 5% 60%, rgba(180,83,9,0.22) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 60% at 90% 30%, rgba(30,58,95,0.2) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 50% at 50% 100%, rgba(107,33,168,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 26px;
+  }
+  .hero-badge span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--eng-a-accent);
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--eng-a-accent), var(--eng-b-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 1rem;
+    max-width: 520px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .subject-pills {
+    display: flex;
+    gap: 10px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 20px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .pill-a { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.25); color: var(--eng-a-accent); }
+  .pill-b { background: rgba(125,211,252,0.1); border-color: rgba(125,211,252,0.25); color: var(--eng-b-accent); }
+  .pill:hover { transform: translateY(-2px); filter: brightness(1.15); }
+
+  /* ─── NAV ─── */
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(12,12,16,0.93);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 16px 22px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active-a { color: var(--eng-a-accent); border-bottom-color: var(--eng-a-accent); }
+  .nav-tab.active-b { color: var(--eng-b-accent); border-bottom-color: var(--eng-b-accent); }
+
+  /* ─── LAYOUT ─── */
+  .main { max-width: 1100px; margin: 0 auto; padding: 48px 40px; }
+
+  .subject-panel { display: none; }
+  .subject-panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+  /* ─── SUBJECT HEADER ─── */
+  .subject-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 22px;
+    align-items: center;
+    margin-bottom: 36px;
+  }
+  .subject-icon {
+    width: 68px; height: 68px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    flex-shrink: 0;
+  }
+  .icon-a { background: linear-gradient(135deg, #92400e, #b45309); box-shadow: 0 8px 32px rgba(251,191,36,0.18); }
+  .icon-b { background: linear-gradient(135deg, #1e3a5f, #1d4ed8); box-shadow: 0 8px 32px rgba(125,211,252,0.18); }
+  .subject-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; margin-bottom: 5px; }
+  .subject-desc { color: var(--text-muted); font-size: 0.9rem; max-width: 620px; line-height: 1.65; }
+
+  /* ─── SECTION CARDS ─── */
+  .sections-grid { display: grid; gap: 18px; }
+
+  .section-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .section-card:hover { border-color: rgba(255,255,255,0.13); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .section-badge {
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .badge-a { background: rgba(251,191,36,0.12); color: var(--eng-a-accent); }
+  .badge-b { background: rgba(125,211,252,0.12); color: var(--eng-b-accent); }
+  .badge-drama { background: rgba(192,132,252,0.12); color: var(--drama-accent); }
+  .badge-poetry { background: rgba(249,168,212,0.12); color: var(--poetry-accent); }
+  .badge-prose { background: rgba(110,231,183,0.12); color: var(--prose-accent); }
+
+  .section-title-area { flex: 1; }
+  .section-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+  .section-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+  .chevron { color: var(--text-muted); transition: transform 0.25s; font-size: 12px; }
+  .section-card.open .chevron { transform: rotate(180deg); }
+
+  .section-body {
+    display: none;
+    padding: 0 24px 22px;
+    border-top: 1px solid var(--border);
+  }
+  .section-card.open .section-body { display: block; }
+
+  .section-intro {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    padding: 14px 0 18px;
+    line-height: 1.75;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+  }
+
+  /* ─── DISCOURSE BLOCKS ─── */
+  .discourse-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 4px;
+  }
+  @media (max-width: 640px) { .discourse-grid { grid-template-columns: 1fr; } }
+
+  .discourse-block {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .discourse-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .label-a { color: var(--eng-a-accent); }
+  .label-b { color: var(--eng-b-accent); }
+  .label-drama { color: var(--drama-accent); }
+  .label-poetry { color: var(--poetry-accent); }
+  .label-prose { color: var(--prose-accent); }
+
+  .objectives-list { list-style: none; display: grid; gap: 6px; }
+  .objectives-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 0.82rem;
+    color: #c8c8d8;
+    line-height: 1.5;
+  }
+  .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+  .dot-a { background: var(--eng-a-accent); }
+  .dot-b { background: var(--eng-b-accent); }
+  .dot-drama { background: var(--drama-accent); }
+  .dot-poetry { background: var(--poetry-accent); }
+  .dot-prose { background: var(--prose-accent); }
+
+  /* ─── TOPIC CHIPS ─── */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+    gap: 9px;
+    margin-top: 16px;
+  }
+  .topic-chip {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transition: all 0.15s;
+  }
+  .topic-chip:hover { transform: translateY(-2px); background: rgba(255,255,255,0.04); }
+  .chip-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.63rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+  .num-a { background: rgba(251,191,36,0.12); color: var(--eng-a-accent); }
+  .num-b { background: rgba(125,211,252,0.12); color: var(--eng-b-accent); }
+  .num-drama { background: rgba(192,132,252,0.12); color: var(--drama-accent); }
+  .num-poetry { background: rgba(249,168,212,0.12); color: var(--poetry-accent); }
+  .num-prose { background: rgba(110,231,183,0.12); color: var(--prose-accent); }
+
+  /* ─── KEY CONCEPTS ─── */
+  .key-concepts {
+    margin-top: 16px;
+    padding: 16px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .kc-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .concept-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .concept-tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 400;
+  }
+  .tag-a { background: rgba(251,191,36,0.08); color: var(--eng-a-mid); border: 1px solid rgba(251,191,36,0.15); }
+  .tag-b { background: rgba(125,211,252,0.08); color: var(--eng-b-mid); border: 1px solid rgba(125,211,252,0.15); }
+  .tag-drama { background: rgba(192,132,252,0.08); color: var(--drama-accent); border: 1px solid rgba(192,132,252,0.15); }
+  .tag-poetry { background: rgba(249,168,212,0.08); color: var(--poetry-accent); border: 1px solid rgba(249,168,212,0.15); }
+  .tag-prose { background: rgba(110,231,183,0.08); color: var(--prose-accent); border: 1px solid rgba(110,231,183,0.15); }
+
+  /* ─── EXAM FORMAT CARD ─── */
+  .exam-format {
+    margin-top: 18px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .exam-format-header {
+    padding: 12px 18px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--dark3);
+    border-bottom: 1px solid var(--border);
+  }
+  .paper-rows { display: grid; gap: 0; }
+  .paper-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+  .paper-row:last-child { border-bottom: none; }
+  .paper-name { font-weight: 600; }
+  .paper-desc { color: var(--text-muted); font-size: 0.78rem; }
+  .paper-weight {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .weight-a { color: var(--eng-a-accent); }
+  .weight-b { color: var(--eng-b-accent); }
+
+  /* ─── TIPS ROW ─── */
+  .tips-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .tip-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .tip-icon { font-size: 22px; margin-bottom: 10px; }
+  .tip-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+  .tip-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 20px 0;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .hero { padding: 40px 20px 36px; }
+    .main { padding: 28px 20px; }
+    .nav-bar { padding: 0 16px; }
+    .subject-header { grid-template-columns: 1fr; gap: 14px; }
+    .topics-grid { grid-template-columns: 1fr 1fr; }
+    .paper-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span></span>CSEC Examination Preparation</div>
+    <h1>CSEC <em>English</em><br>Study Guide</h1>
+    <p class="hero-sub">A complete reference for English A and English B — covering language skills, literary genres, exam formats, and key concepts drawn directly from the CXC syllabus.</p>
+    <div class="subject-pills">
+      <div class="pill pill-a" onclick="switchTab('a')">✍️ English A</div>
+      <div class="pill pill-b" onclick="switchTab('b')">📖 English B</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <div class="nav-tab active-a" id="tab-a" onclick="switchTab('a')">✍️ English A</div>
+    <div class="nav-tab" id="tab-b" onclick="switchTab('b')">📖 English B</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ══════════ ENGLISH A ══════════ -->
+  <div class="subject-panel active" id="panel-a">
+    <div class="subject-header">
+      <div class="subject-icon icon-a">✍️</div>
+      <div>
+        <div class="subject-title">English A</div>
+        <div class="subject-desc">Develops oral and written language skills through a variety of strategies. English A focuses on <strong>Understanding</strong> — decoding and interpreting messages — and <strong>Expression</strong> — conveying meaning through appropriate language. It is assessed across three external and school-based papers.</div>
+      </div>
+    </div>
+
+    <div class="sections-grid">
+
+      <!-- GRAMMAR & MECHANICS -->
+      <div class="section-card open" id="sec-gram">
+        <div class="section-header" onclick="toggleSection('sec-gram')">
+          <div class="section-badge badge-a">A</div>
+          <div class="section-title-area">
+            <div class="section-name">Grammar &amp; Mechanics</div>
+            <div class="section-sub">Discourse Type (a) — Foundation of all language skills</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">The foundational layer of the syllabus. Covers how word choice, grammar, syntax, punctuation, and paragraphing work together to convey meaning — both in reading and writing. Understanding grammar enables students to produce accurate, effective communication.</p>
+          <div class="discourse-grid">
+            <div class="discourse-block">
+              <div class="discourse-label label-a">Understanding</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-a"></span>Explain meaning conveyed through word choice and grammar</li>
+                <li><span class="dot dot-a"></span>Identify effective use of adjectives, word combinations, and unusual phrases</li>
+                <li><span class="dot dot-a"></span>Recognise the effect of punctuation marks on meaning</li>
+                <li><span class="dot dot-a"></span>Understand how paragraphing creates emphasis and aids comprehension</li>
+              </ul>
+            </div>
+            <div class="discourse-block">
+              <div class="discourse-label label-a">Expression</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-a"></span>Use appropriate diction and grammatical forms in speaking and writing</li>
+                <li><span class="dot dot-a"></span>Apply suitable punctuation and paragraphing to convey meaning clearly</li>
+                <li><span class="dot dot-a"></span>Match word choice and style to purpose, situation, and audience</li>
+                <li><span class="dot dot-a"></span>Use correct sentence functions: statements, questions, commands</li>
+              </ul>
+            </div>
+          </div>
+          <div class="key-concepts">
+            <div class="kc-label label-a">Key Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag tag-a">Syntax & morphology</span>
+              <span class="concept-tag tag-a">Formal vs informal register</span>
+              <span class="concept-tag tag-a">Synonyms & antonyms</span>
+              <span class="concept-tag tag-a">Punctuation marks & their effects</span>
+              <span class="concept-tag tag-a">Topic sentences & paragraphing</span>
+              <span class="concept-tag tag-a">Diction & word choice</span>
+              <span class="concept-tag tag-a">Caribbean Standard English (CSE)</span>
+              <span class="concept-tag tag-a">Figurative vs literal language</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFORMATIVE DISCOURSE -->
+      <div class="section-card" id="sec-info">
+        <div class="section-header" onclick="toggleSection('sec-info')">
+          <div class="section-badge badge-a">A</div>
+          <div class="section-title-area">
+            <div class="section-name">Informative Discourse</div>
+            <div class="section-sub">Discourse Type (b) — Comprehension, summary &amp; functional writing</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Deals with extracting and communicating factual information. Students learn to read and interpret texts for explicit and implied meaning, draw conclusions, interpret visual data, and produce functional written forms such as summaries, letters, reports, and notices.</p>
+          <div class="discourse-grid">
+            <div class="discourse-block">
+              <div class="discourse-label label-a">Understanding</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-a"></span>Recognise facts stated explicitly in a text</li>
+                <li><span class="dot dot-a"></span>Extract specific and implied information from reading or listening</li>
+                <li><span class="dot dot-a"></span>Draw valid conclusions and inferences from information presented</li>
+                <li><span class="dot dot-a"></span>Identify stated or implied time sequence (e.g. flashbacks)</li>
+                <li><span class="dot dot-a"></span>Recognise cause-and-effect relationships</li>
+                <li><span class="dot dot-a"></span>Identify main and subordinate ideas and trace their development</li>
+                <li><span class="dot dot-a"></span>Interpret tables, charts, diagrams, maps, and cartoons</li>
+              </ul>
+            </div>
+            <div class="discourse-block">
+              <div class="discourse-label label-a">Expression</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-a"></span>Communicate factual information clearly and concisely</li>
+                <li><span class="dot dot-a"></span>Write well-structured summaries (Paper 02 Section A)</li>
+                <li><span class="dot dot-a"></span>Produce functional forms: emails, letters, reports, notices, articles</li>
+                <li><span class="dot dot-a"></span>Give clear oral and written instructions and directions</li>
+                <li><span class="dot dot-a"></span>Write reports using appropriate tone and format</li>
+              </ul>
+            </div>
+          </div>
+          <div class="key-concepts">
+            <div class="kc-label label-a">Key Skills &amp; Text Types</div>
+            <div class="concept-tags">
+              <span class="concept-tag tag-a">Summarising</span>
+              <span class="concept-tag tag-a">Paraphrasing</span>
+              <span class="concept-tag tag-a">Note-taking</span>
+              <span class="concept-tag tag-a">Report writing</span>
+              <span class="concept-tag tag-a">Letter writing (formal/informal)</span>
+              <span class="concept-tag tag-a">Email format</span>
+              <span class="concept-tag tag-a">Notice writing</span>
+              <span class="concept-tag tag-a">Reading between the lines</span>
+              <span class="concept-tag tag-a">Interpreting visual data</span>
+              <span class="concept-tag tag-a">Cause & effect</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LITERARY DISCOURSE -->
+      <div class="section-card" id="sec-lit">
+        <div class="section-header" onclick="toggleSection('sec-lit')">
+          <div class="section-badge badge-a">A</div>
+          <div class="section-title-area">
+            <div class="section-name">Literary Discourse</div>
+            <div class="section-sub">Discourse Type (c) — Appreciating &amp; responding to literature</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Develops students' ability to engage with and respond to literary texts — prose, poetry, and drama. Students practise literary analysis, recognise writer's craft, identify themes and devices, and produce imaginative writing of their own, including the short story.</p>
+          <div class="discourse-grid">
+            <div class="discourse-block">
+              <div class="discourse-label label-a">Understanding</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-a"></span>Recognise and respond to the writer's craft and technique</li>
+                <li><span class="dot dot-a"></span>Detect connotations and distinguish denotative/connotative meaning</li>
+                <li><span class="dot dot-a"></span>Recognise literary devices: pun, irony, symbolism, exaggeration, innuendo</li>
+                <li><span class="dot dot-a"></span>Appreciate appropriateness of tone, mood, register, code, and style</li>
+                <li><span class="dot dot-a"></span>Visualise setting, atmosphere, and character in drama</li>
+                <li><span class="dot dot-a"></span>Recognise implicit themes and make inferences</li>
+                <li><span class="dot dot-a"></span>Respond critically to West Indian and other literature in English</li>
+              </ul>
+            </div>
+            <div class="discourse-block">
+              <div class="discourse-label label-a">Expression</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-a"></span>Write a well-crafted short story (Paper 02 Section C)</li>
+                <li><span class="dot dot-a"></span>Organise and sequence ideas imaginatively</li>
+                <li><span class="dot dot-a"></span>Use language to create mood, atmosphere, and voice</li>
+                <li><span class="dot dot-a"></span>Make critical appraisals of values expressed in literature</li>
+                <li><span class="dot dot-a"></span>Relate literary themes to everyday living</li>
+              </ul>
+            </div>
+          </div>
+          <div class="key-concepts">
+            <div class="kc-label label-a">Key Literary Devices</div>
+            <div class="concept-tags">
+              <span class="concept-tag tag-a">Simile & metaphor</span>
+              <span class="concept-tag tag-a">Personification</span>
+              <span class="concept-tag tag-a">Irony & sarcasm</span>
+              <span class="concept-tag tag-a">Symbolism</span>
+              <span class="concept-tag tag-a">Tone & mood</span>
+              <span class="concept-tag tag-a">Theme</span>
+              <span class="concept-tag tag-a">Imagery</span>
+              <span class="concept-tag tag-a">Narrative voice</span>
+              <span class="concept-tag tag-a">Conflict & resolution</span>
+              <span class="concept-tag tag-a">Caribbean literature</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARGUMENTATIVE DISCOURSE -->
+      <div class="section-card" id="sec-arg">
+        <div class="section-header" onclick="toggleSection('sec-arg')">
+          <div class="section-badge badge-a">A</div>
+          <div class="section-title-area">
+            <div class="section-name">Argumentative Discourse</div>
+            <div class="section-sub">Discourse Type (d) — Critical thinking &amp; persuasive writing</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Trains students to detect, evaluate, and produce persuasive language. Students analyse the techniques used in advertising, speeches, editorials, and debates — then apply them to write their own clear, cogent arguments in the form of essays, speeches, or letters.</p>
+          <div class="discourse-grid">
+            <div class="discourse-block">
+              <div class="discourse-label label-a">Understanding</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-a"></span>Distinguish factual statements from unsupported opinions</li>
+                <li><span class="dot dot-a"></span>Detect bias, perspective, and connotations in language</li>
+                <li><span class="dot dot-a"></span>Evaluate the effectiveness of persuasive language devices</li>
+                <li><span class="dot dot-a"></span>Recognise techniques of persuasion in media and social intercourse</li>
+                <li><span class="dot dot-a"></span>Assess argumentative effects of rhetorical devices</li>
+              </ul>
+            </div>
+            <div class="discourse-block">
+              <div class="discourse-label label-a">Expression</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-a"></span>Present reasoned evaluative comments on proposals and situations</li>
+                <li><span class="dot dot-a"></span>Employ argumentative techniques for emotional impact</li>
+                <li><span class="dot dot-a"></span>Present a logical argument using justifiable techniques</li>
+                <li><span class="dot dot-a"></span>Write argumentative essays, speeches, or letters to the editor (Paper 02 Section D)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="key-concepts">
+            <div class="kc-label label-a">Rhetorical Devices &amp; Techniques</div>
+            <div class="concept-tags">
+              <span class="concept-tag tag-a">Rhetorical questions</span>
+              <span class="concept-tag tag-a">Repetition</span>
+              <span class="concept-tag tag-a">Hyperbole</span>
+              <span class="concept-tag tag-a">Irony & sarcasm</span>
+              <span class="concept-tag tag-a">Paradox & oxymoron</span>
+              <span class="concept-tag tag-a">Emotive language</span>
+              <span class="concept-tag tag-a">Appeals to authority</span>
+              <span class="concept-tag tag-a">Use of statistics</span>
+              <span class="concept-tag tag-a">Fact vs opinion</span>
+              <span class="concept-tag tag-a">Bias & perspective</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAM FORMAT -->
+      <div class="section-card" id="sec-exam-a">
+        <div class="section-header" onclick="toggleSection('sec-exam-a')">
+          <div class="section-badge badge-a">FORMAT</div>
+          <div class="section-title-area">
+            <div class="section-name">English A — Examination Structure</div>
+            <div class="section-sub">Papers, timing, and mark breakdown</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">English A is assessed across three components. Profile Dimension 1 tests <strong>Understanding</strong> and Profile Dimension 2 tests <strong>Expression</strong>. Both dimensions are reported on the certificate.</p>
+
+          <div class="exam-format">
+            <div class="exam-format-header label-a">Examination Papers</div>
+            <div class="paper-rows">
+              <div class="paper-row">
+                <div class="paper-name">Paper 01 <span style="font-weight:300;font-size:0.75rem">1 hr 30 min</span></div>
+                <div class="paper-desc">60 multiple-choice items. Section 1 (25 discrete grammar items) + Section 2 (35 comprehension items on 5 stimuli: poem, literary extract, expository extract, argumentative extract, visual extract)</div>
+                <div class="paper-weight weight-a">29%</div>
+              </div>
+              <div class="paper-row">
+                <div class="paper-name">Paper 02 <span style="font-weight:300;font-size:0.75rem">2 hr 40 min</span></div>
+                <div class="paper-desc">
+                  Section A — Summary (25 marks) · Section B — Functional writing: email/letter/report/notice/article (30 marks) · Section C — Short story (optional, 25 marks) · Section D — Argumentative essay/speech/letter to editor (25 marks)
+                </div>
+                <div class="paper-weight weight-a">50%</div>
+              </div>
+              <div class="paper-row">
+                <div class="paper-name">Paper 031 <span style="font-weight:300;font-size:0.75rem">SBA</span></div>
+                <div class="paper-desc">Portfolio-based group project. Includes Plan of Investigation, 3+ sources (print, audio, visual), 3 Reflection entries, a Written Report (250–300 words), and a 3–5 min Oral Presentation in a genre of your choice</div>
+                <div class="paper-weight weight-a">21%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topics-grid">
+            <div class="topic-chip"><span class="chip-num num-a">P2-A</span>Summary Writing</div>
+            <div class="topic-chip"><span class="chip-num num-a">P2-B</span>Functional Writing</div>
+            <div class="topic-chip"><span class="chip-num num-a">P2-C</span>Short Story</div>
+            <div class="topic-chip"><span class="chip-num num-a">P2-D</span>Argumentative Essay</div>
+            <div class="topic-chip"><span class="chip-num num-a">SBA</span>Oral Presentation</div>
+            <div class="topic-chip"><span class="chip-num num-a">SBA</span>Portfolio & Reflection</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tips-row">
+      <div class="tip-card">
+        <div class="tip-icon">✂️</div>
+        <div class="tip-title">Mastering the Summary</div>
+        <div class="tip-text">Paper 02 Section A is compulsory and worth 25 marks. Read the passage twice, identify the main points only, and write in your own words. Avoid lifting sentences directly. Aim for a single, coherent paragraph unless instructed otherwise.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🖊️</div>
+        <div class="tip-title">Short Story Essentials</div>
+        <div class="tip-text">A strong short story needs a clear opening hook, rising tension, a climax, and a resolution. Use vivid sensory detail, varied sentence structure, and consistent narrative voice. Plan for 5 minutes before you write — examiners reward structure.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🗣️</div>
+        <div class="tip-title">SBA Oral Presentation</div>
+        <div class="tip-text">Your 3–5 minute oral must be delivered predominantly in Caribbean Standard English. Choose a genre you're comfortable with (speech, drama, poetry, prose). Practise aloud multiple times. Always introduce your genre, sources, and the type of language used.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ ENGLISH B ══════════ -->
+  <div class="subject-panel" id="panel-b">
+    <div class="subject-header">
+      <div class="subject-icon icon-b">📖</div>
+      <div>
+        <div class="subject-title">English B</div>
+        <div class="subject-desc">Explores how writers, poets, and dramatists craft their work to influence our feelings and thoughts about life. English B is assessed across three literary profile dimensions: <strong>Drama</strong>, <strong>Poetry</strong>, and <strong>Prose Fiction</strong>. It requires close reading, critical analysis, and essay writing.</div>
+      </div>
+    </div>
+
+    <div class="sections-grid">
+
+      <!-- DRAMA -->
+      <div class="section-card open" id="sec-drama">
+        <div class="section-header" onclick="toggleSection('sec-drama')">
+          <div class="section-badge badge-drama">Drama</div>
+          <div class="section-title-area">
+            <div class="section-name">Drama — Profile Dimension 1</div>
+            <div class="section-sub">Shakespeare + Modern Drama · Paper 02 Section A</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Drama is studied as a discrete literary genre, with emphasis on elements unique to it. Students examine texts by Shakespeare alongside modern drama, exploring how the genre uses performance, spectacle, and stagecraft to convey theme and character.</p>
+          <div class="discourse-grid">
+            <div class="discourse-block">
+              <div class="discourse-label label-drama">Elements Unique to Drama</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-drama"></span>Performance as the main vehicle of communication</li>
+                <li><span class="dot dot-drama"></span>Stage directions and their effect on interpretation</li>
+                <li><span class="dot dot-drama"></span>Spectacle — how visual elements create meaning</li>
+                <li><span class="dot dot-drama"></span>Character development through dialogue and action</li>
+                <li><span class="dot dot-drama"></span>Atmosphere created through lighting, costuming, props</li>
+              </ul>
+            </div>
+            <div class="discourse-block">
+              <div class="discourse-label label-drama">Critical Skills Tested</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-drama"></span>Knowledge and insight — relevance and accuracy of content</li>
+                <li><span class="dot dot-drama"></span>Organisation of response — structure and logical argument</li>
+                <li><span class="dot dot-drama"></span>Quality of language — clarity, grammar, and mechanics</li>
+                <li><span class="dot dot-drama"></span>Recognise the writer's craft in shaping character and behaviour</li>
+                <li><span class="dot dot-drama"></span>Identify moral assumptions and values in the text</li>
+              </ul>
+            </div>
+          </div>
+          <div class="key-concepts">
+            <div class="kc-label label-drama">Key Concepts to Study</div>
+            <div class="concept-tags">
+              <span class="concept-tag tag-drama">Conflict & resolution</span>
+              <span class="concept-tag tag-drama">Protagonist & antagonist</span>
+              <span class="concept-tag tag-drama">Soliloquy & aside</span>
+              <span class="concept-tag tag-drama">Dramatic irony</span>
+              <span class="concept-tag tag-drama">Tragic flaw</span>
+              <span class="concept-tag tag-drama">Subplot</span>
+              <span class="concept-tag tag-drama">Themes & motifs</span>
+              <span class="concept-tag tag-drama">Context & setting</span>
+              <span class="concept-tag tag-drama">Shakespeare's language</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- POETRY -->
+      <div class="section-card" id="sec-poetry">
+        <div class="section-header" onclick="toggleSection('sec-poetry')">
+          <div class="section-badge badge-poetry">Poetry</div>
+          <div class="section-title-area">
+            <div class="section-name">Poetry — Profile Dimension 2</div>
+            <div class="section-sub">20 Prescribed Poems · Paper 02 Section B</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Poetry is studied as a discrete literary genre, with a focus on elements specific to it: fixed forms, metre, rhythm, rhyme, economy of language, and the organic relationship between sound and sense. Students study a selection of 20 prescribed poems including Caribbean and other poetry in English.</p>
+          <div class="discourse-grid">
+            <div class="discourse-block">
+              <div class="discourse-label label-poetry">Elements Unique to Poetry</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-poetry"></span>Fixed forms — sonnet, ballad, ode, free verse, etc.</li>
+                <li><span class="dot dot-poetry"></span>Metre, rhythm, and rhyme scheme</li>
+                <li><span class="dot dot-poetry"></span>Economy of language — every word carries weight</li>
+                <li><span class="dot dot-poetry"></span>Sound-sense relationship: onomatopoeia, assonance, alliteration</li>
+                <li><span class="dot dot-poetry"></span>Figurative language giving levels of meaning</li>
+              </ul>
+            </div>
+            <div class="discourse-block">
+              <div class="discourse-label label-poetry">Exam Question Types</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-poetry"></span>Type B Question 1 — Generic: compare two poems of your choice</li>
+                <li><span class="dot dot-poetry"></span>Type B Question 2 — Named: two specific poems from the list</li>
+                <li><span class="dot dot-poetry"></span>Answer ONE question from this section</li>
+                <li><span class="dot dot-poetry"></span>Each question worth 35 marks</li>
+                <li><span class="dot dot-poetry"></span>Must know at least 5–6 poems well for flexibility</li>
+              </ul>
+            </div>
+          </div>
+          <div class="key-concepts">
+            <div class="kc-label label-poetry">Key Poetic Devices</div>
+            <div class="concept-tags">
+              <span class="concept-tag tag-poetry">Simile & metaphor</span>
+              <span class="concept-tag tag-poetry">Personification</span>
+              <span class="concept-tag tag-poetry">Alliteration</span>
+              <span class="concept-tag tag-poetry">Assonance</span>
+              <span class="concept-tag tag-poetry">Onomatopoeia</span>
+              <span class="concept-tag tag-poetry">Enjambment</span>
+              <span class="concept-tag tag-poetry">Caesura</span>
+              <span class="concept-tag tag-poetry">Tone & mood</span>
+              <span class="concept-tag tag-poetry">Speaker & persona</span>
+              <span class="concept-tag tag-poetry">Stanza structure</span>
+              <span class="concept-tag tag-poetry">Rhyme scheme (ABAB, etc.)</span>
+              <span class="concept-tag tag-poetry">Caribbean dialect in poetry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROSE FICTION -->
+      <div class="section-card" id="sec-prose">
+        <div class="section-header" onclick="toggleSection('sec-prose')">
+          <div class="section-badge badge-prose">Prose</div>
+          <div class="section-title-area">
+            <div class="section-name">Prose Fiction — Profile Dimension 3</div>
+            <div class="section-sub">Novels &amp; Short Stories · Paper 02 Section C</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Prose Fiction is the most expansive and accessible genre. Students study prescribed West Indian novels, other novels in English, and collections of short stories. The focus is on narrative technique, characterisation, structure, and how authors present human beings in social settings.</p>
+          <div class="discourse-grid">
+            <div class="discourse-block">
+              <div class="discourse-label label-prose">Elements of Prose Fiction</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-prose"></span>Narrative technique — first-person vs third-person narrators</li>
+                <li><span class="dot dot-prose"></span>Structure — unbroken narrative, chapters, multiple narratives</li>
+                <li><span class="dot dot-prose"></span>Narration vs description — knowing the difference</li>
+                <li><span class="dot dot-prose"></span>Characterisation — how characters are built and revealed</li>
+                <li><span class="dot dot-prose"></span>The presentation of humanity in a social setting</li>
+                <li><span class="dot dot-prose"></span>Themes — central ideas explored throughout the text</li>
+              </ul>
+            </div>
+            <div class="discourse-block">
+              <div class="discourse-label label-prose">Exam Question Types</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-prose"></span>Type A Questions — Knowledge of ONE prescribed novel</li>
+                <li><span class="dot dot-prose"></span>Type B Questions — Compare two short stories from prescribed list</li>
+                <li><span class="dot dot-prose"></span>Answer ONE question from this section</li>
+                <li><span class="dot dot-prose"></span>Each question worth 35 marks</li>
+                <li><span class="dot dot-prose"></span>Prioritise West Indian texts for cultural context</li>
+              </ul>
+            </div>
+          </div>
+          <div class="key-concepts">
+            <div class="kc-label label-prose">Key Analytical Concepts</div>
+            <div class="concept-tags">
+              <span class="concept-tag tag-prose">Point of view (POV)</span>
+              <span class="concept-tag tag-prose">Reliable vs unreliable narrator</span>
+              <span class="concept-tag tag-prose">Setting & atmosphere</span>
+              <span class="concept-tag tag-prose">Conflict types</span>
+              <span class="concept-tag tag-prose">Character motivation</span>
+              <span class="concept-tag tag-prose">Foreshadowing</span>
+              <span class="concept-tag tag-prose">Flashback</span>
+              <span class="concept-tag tag-prose">Symbolism & motif</span>
+              <span class="concept-tag tag-prose">Social commentary</span>
+              <span class="concept-tag tag-prose">West Indian identity & culture</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXAM FORMAT B -->
+      <div class="section-card" id="sec-exam-b">
+        <div class="section-header" onclick="toggleSection('sec-exam-b')">
+          <div class="section-badge badge-b">FORMAT</div>
+          <div class="section-title-area">
+            <div class="section-name">English B — Examination Structure</div>
+            <div class="section-sub">Papers, profiles, and mark breakdown</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">English B is assessed across three profile dimensions: Drama, Poetry, and Prose Fiction. The certificate shows a grade for each. Responses require knowledge of text, insight, logical argument, and quality of written expression.</p>
+
+          <div class="exam-format">
+            <div class="exam-format-header label-b">Examination Papers</div>
+            <div class="paper-rows">
+              <div class="paper-row">
+                <div class="paper-name">Paper 01 <span style="font-weight:300;font-size:0.75rem">2 hours</span></div>
+                <div class="paper-desc">60 multiple-choice items. Each genre (Drama, Poetry, Prose) has 2 stimuli — 1 Caribbean and 1 other. 10 questions per stimulus = 20 questions per genre. All questions are compulsory.</div>
+                <div class="paper-weight weight-b">29%</div>
+              </div>
+              <div class="paper-row">
+                <div class="paper-name">Paper 02 <span style="font-weight:300;font-size:0.75rem">2 hr 10 min</span></div>
+                <div class="paper-desc">3 sections — Drama (choose 1 of 2 questions, 35 marks each) · Poetry (choose 1 of 2 questions, 35 marks each) · Prose Fiction (choose 1 of 4 questions, 35 marks each). Answer 3 questions total, one per section.</div>
+                <div class="paper-weight weight-b">50%</div>
+              </div>
+              <div class="paper-row">
+                <div class="paper-name">Paper 031 <span style="font-weight:300;font-size:0.75rem">SBA (shared with A)</span></div>
+                <div class="paper-desc">One single SBA portfolio counts for both English A and B. Includes Plan of Investigation, 3 sources, 3 Reflection entries, Written Report (~250–300 words), and 3–5 min Oral Presentation in a genre of choice.</div>
+                <div class="paper-weight weight-b">21%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topics-grid" style="margin-top:16px;">
+            <div class="topic-chip"><span class="chip-num num-drama">Type A</span>Single-text essay (Drama/Novel)</div>
+            <div class="topic-chip"><span class="chip-num num-poetry">Type B</span>Comparative essay (Poems/Stories)</div>
+            <div class="topic-chip"><span class="chip-num num-prose">35 marks</span>Per Paper 02 question</div>
+            <div class="topic-chip"><span class="chip-num num-b">Profile</span>3 certificates: Drama · Poetry · Prose</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW TO WRITE A LIT ESSAY -->
+      <div class="section-card" id="sec-essay">
+        <div class="section-header" onclick="toggleSection('sec-essay')">
+          <div class="section-badge badge-b">SKILLS</div>
+          <div class="section-title-area">
+            <div class="section-name">Writing the Literary Essay</div>
+            <div class="section-sub">Critical skills tested in Paper 02 — all three genres</div>
+          </div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="section-body">
+          <p class="section-intro">Every Paper 02 question in English B is a 35-mark extended essay. Marks are awarded under two broad areas — <strong>Understanding</strong> (knowledge of text, insight, relevant examples) and <strong>Expression</strong> (structure, logical argument, quality of language). These are the skills to master.</p>
+          <div class="discourse-grid">
+            <div class="discourse-block">
+              <div class="discourse-label label-b">Understanding — What to show</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-b"></span>Describe, analyse, and synthesise information from the text</li>
+                <li><span class="dot dot-b"></span>Respond to West Indian and other literatures with sensitivity</li>
+                <li><span class="dot dot-b"></span>Make rational appraisals of values, judgements, and concepts</li>
+                <li><span class="dot dot-b"></span>Recognise the writer's craft — technique in shaping language</li>
+                <li><span class="dot dot-b"></span>Identify and distinguish moral assumptions in the text</li>
+                <li><span class="dot dot-b"></span>Grasp how concepts and values are manifested in literature</li>
+              </ul>
+            </div>
+            <div class="discourse-block">
+              <div class="discourse-label label-b">Expression — How to write</div>
+              <ul class="objectives-list">
+                <li><span class="dot dot-b"></span>Communicate opinions in well-structured, analytical responses</li>
+                <li><span class="dot dot-b"></span>Use the vocabulary of literary criticism correctly</li>
+                <li><span class="dot dot-b"></span>Produce balanced critical analyses — not just summaries</li>
+                <li><span class="dot dot-b"></span>Structure responses with clear introduction, body, and conclusion</li>
+                <li><span class="dot dot-b"></span>Write correctly in terms of grammar, punctuation, and spelling</li>
+              </ul>
+            </div>
+          </div>
+          <div class="key-concepts">
+            <div class="kc-label label-b">Essay Writing Formula</div>
+            <div class="concept-tags">
+              <span class="concept-tag tag-b">Point → Evidence → Explain (PEE)</span>
+              <span class="concept-tag tag-b">Intro with clear argument/thesis</span>
+              <span class="concept-tag tag-b">Quotation + analysis</span>
+              <span class="concept-tag tag-b">Topic sentences per paragraph</span>
+              <span class="concept-tag tag-b">Linking words & cohesion</span>
+              <span class="concept-tag tag-b">Critical vocabulary</span>
+              <span class="concept-tag tag-b">Balanced argument</span>
+              <span class="concept-tag tag-b">Strong conclusion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tips-row">
+      <div class="tip-card">
+        <div class="tip-icon">🎭</div>
+        <div class="tip-title">Know Your Texts Deeply</div>
+        <div class="tip-text">Don't just read the texts — annotate them. Mark key quotes, note themes, identify characters' motivations, and track how the author builds tension or meaning. For poetry, read each poem at least 5 times, including aloud.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📝</div>
+        <div class="tip-title">Never Just Retell the Story</div>
+        <div class="tip-text">The examiners want analysis, not summary. Every paragraph should include a quotation or specific reference, followed by your explanation of what the writer is doing and why it's effective. Ask yourself: "How does the writer create this effect?"</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🌍</div>
+        <div class="tip-title">Embrace Caribbean Literature</div>
+        <div class="tip-text">Caribbean texts are always included in Paper 01 and are a strong choice for Paper 02. Understand the social, historical, and cultural contexts of Caribbean writers — identity, colonialism, language, and community appear frequently as themes.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function switchTab(t) {
+    document.querySelectorAll('.subject-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active-a','active-b'));
+    document.getElementById('panel-' + t).classList.add('active');
+    document.getElementById('tab-' + t).classList.add('active-' + t);
+  }
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+</script>
+</body>
+</html>

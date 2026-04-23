@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSEC Study Hub</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7f4;
+            color: #1a1a1a;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: #006b3f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+                /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #006b3f, #004d2d);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #f5f5f5;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: #d4af37;
+            color: #000;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .hero-btn:hover {
+            background: #b89325;
+        }
+
+        /* SUBJECTS SECTION */
+        .subjects-section {
+            padding: 60px 30px;
+            background: white;
+        }
+
+        .subjects-section h2 {
+            text-align: center;
+            color: #006b3f;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .subject-btn {
+            background: #006b3f;
+            color: white;
+            text-decoration: none;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .subject-btn:hover {
+            background: #d4af37;
+            color: black;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background: #006b3f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media(max-width:768px){
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>CSEC STUDY HUB</nav>
+
+    <section class="hero">
+        <h1>Study Smarter. Succeed in CSEC.</h1>
+        <p>Access study guides for all your major CSEC subjects in one place. Built for students of ISA Islamic School and beyond.</p>
+        <a href="#subjects" class="hero-btn">Browse Subjects</a>
+    </section>
+
+    <section class="subjects-section" id="subjects">
+        <h2>Available Subjects</h2>
+
+        <div class="subjects-grid">
+            <a href="guides/math.html" class="subject-btn">Mathematics</a>
+            <a href="guides/english.html" class="subject-btn">English</a>
+            <a href="guides/business.html" class="subject-btn">Business</a>
+            <a href="guides/science.html" class="subject-btn">Science</a>
+            <a href="guides/hsb.html" class="subject-btn">HSB</a>
+            <a href="guides/integrated-science.html" class="subject-btn">Integrated Science</a>
+            <a href="guides/religious-education.html" class="subject-btn">Religious Education</a>
+            <a href="guides/edpm.html" class="subject-btn">EDPM</a>
+            <a href="guides/agriculture.html" class="subject-btn">Agricultural Science</a>
+            <a href="guides/family-resource.html" class="subject-btn">Family & Resource Management</a>
+            <a href="guides/food-nutrition.html" class="subject-btn">Food, Nutrition & Health</a>
+            <a href="guides/geography.html" class="subject-btn">Geography</a>
+            <a href="guides/it.html" class="subject-btn">Information Technology</a>
+            <a href="guides/social-studies.html" class="subject-btn">Social Studies</a>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 CSEC Study Hub | Created for ISA Islamic School Students
+    </footer>
+
+</body>
+</html>
